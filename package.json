@@ -1,0 +1,19 @@
+{
+  "name": "social-media-prototype",
+  "version": "1.0.0",
+  "description": "a prototype for a social media application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doychinivanov/social-media-prototype.git"
+  },
+  "author": "Doychin Ivanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/doychinivanov/social-media-prototype/issues"
+  },
+  "homepage": "https://github.com/doychinivanov/social-media-prototype#readme"
+}
