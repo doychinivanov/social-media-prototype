@@ -4,7 +4,25 @@ const userService = require('../services/userService');
 const {COOKIE_NAME, TOKEN_SECRET} = require('../config/index');
 
 
+module.exports = () => (req, res, next)=>{
+    if(parseToken(req, res)){
+        req.auth = {
+            async register(){
+                const token = await register(email, username, password, birthDay, isPrivate);
+                res.cookie(COOKIE_NAME, token);
+            },
+            async login(email, password){
+                const token = await login(email, password);
+                res.cookie(COOKIE_NAME, token);
+            },
+            logout(){
+                res.clearCookie(COOKIE_NAME);
+            }
+        };
 
+        next();
+    };
+};
 
 
 async function register(email, username, password, birthDay, isPrivate){
