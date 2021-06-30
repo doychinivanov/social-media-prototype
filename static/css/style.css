@@ -1,0 +1,67 @@
+.link-holer a {
+    color: #FFF;
+    text-decoration: none;
+    font: 20px Raleway;
+    margin: 0px 10px;
+    padding: 10px 10px;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+}
+
+
+/* Top and Bottom borders go out */
+.link-holer a:before,
+.link-holer a:after {
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background: #4A4A4B;
+    content: "";
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.link-holer a:before {
+    top: 0px;
+    transform: translateY(10px);
+}
+
+.link-holer a:after {
+    bottom: 0px;
+    transform: translateY(-10px);
+}
+
+.link-holer a:hover:before,
+.link-holer a:hover:after {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.centered-div{
+    margin: auto;
+}
+
+.form-check-input[type=checkbox] {
+    border-radius: 50%;
+    float: none;
+}
+
+.form-check-input[type=checkbox]:hover {
+    cursor: pointer;
+}
+
+em{
+    color: lightslategray;
+}
+
+/* --------- */
+
+/* Fix landing page input */
+
+@media (min-width: 768px){
+    .land-page-form{
+        width: 60%;
+    }
+}
