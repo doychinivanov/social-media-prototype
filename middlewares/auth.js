@@ -7,8 +7,8 @@ const {COOKIE_NAME, TOKEN_SECRET} = require('../config/index');
 module.exports = () => (req, res, next)=>{
     if(parseToken(req, res)){
         req.auth = {
-            async register(){
-                const token = await register(email, username, password, birthDay, isPrivate);
+            async register(userData){
+                const token = await register(userData);
                 res.cookie(COOKIE_NAME, token);
             },
             async login(email, password){
@@ -25,9 +25,9 @@ module.exports = () => (req, res, next)=>{
 };
 
 
-async function register(email, username, password, birthDay, isPrivate){
-    const existingUsername = await userService.getUserByUsername(username);
-    const existingEmail = await userService.getUserByEmail(email);
+async function register(userData){
+    const existingUsername = await userService.getUserByUsername(userData.username);
+    const existingEmail = await userService.getUserByEmail(userData.email);
 
     if(existingUsername){
         throw new Error('A user with that username already exists!');
@@ -37,8 +37,8 @@ async function register(email, username, password, birthDay, isPrivate){
         throw new Error('Email is already taken!')
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = userService.createUser(email, username, hashedPassword, birthDay, isPrivate);
+    const hashedPassword = await bcrypt.hash(userData.password, 10);
+    const user = userService.createUser(userData.email, userData.username, hashedPassword, userData.birthDay, userData.isPrivate);
 
     return generateToken(user);
 
@@ -46,12 +46,12 @@ async function register(email, username, password, birthDay, isPrivate){
 
 
 async function login(email, password){
-    const user = userService.getUserByEmail(email);
+    const user = await userService.getUserByEmail(email);
 
     if(!user || await bcrypt.compare(password, user.hashedPassword) == false){
         throw new Error('Wrong username or password!');
     };
-
+    
     return generateToken(user);
 }
 
