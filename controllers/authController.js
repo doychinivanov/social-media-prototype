@@ -1,10 +1,11 @@
 const router = require('express').Router();
+const {isUser, isGuest} = require('../middlewares/guards');
 
-router.get('/register', (req, res)=>{
+router.get('/register', isGuest(), (req, res)=>{
     res.render('authViews/register');
 });
 
-router.post('/register', async (req,res)=>{
+router.post('/register', isGuest(), async (req,res)=>{
     const userData = {
         email: req.body.email.trim(),
         username: req.body.username.trim(),
@@ -23,11 +24,11 @@ router.post('/register', async (req,res)=>{
     }
 });
 
-router.get('/login', (req, res)=>{
+router.get('/login', isGuest(), (req, res)=>{
     res.render('authViews/login');
 });
 
-router.post('/login', async (req,res)=>{
+router.post('/login', isGuest(), async (req,res)=>{
     try{
         await req.auth.login(req.body.email.trim(), req.body.password.trim());
         res.redirect('/');
@@ -45,7 +46,7 @@ router.post('/login', async (req,res)=>{
     }
 });
 
-router.get('/logout', (req,res)=>{
+router.get('/logout', isUser(), (req,res)=>{
     req.auth.logout();
     res.redirect('/');
 });
