@@ -12,7 +12,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
     <link rel="stylesheet" href="/static/css/style.css">
-    <title>Home</title>
+    <title>{{title}}</title>
 
 </head>
 
@@ -27,6 +27,15 @@
 
             <div id="navmenu" class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto text-center link-holer">
+                    {{#if user}}
+                    <li class="nav-item">
+                        <a href="/user/profile" class="nav-link btn-lg">Profile</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/auth/logout" class="nav-link btn-lg">Logout</a>
+                    </li>
+                    {{else}}
                     <li class="nav-item">
                         <a href="/auth/login" class="nav-link btn-lg">Login</a>
                     </li>
@@ -34,12 +43,32 @@
                     <li class="nav-item">
                         <a href="/auth/register" class="nav-link btn-lg">Register</a>
                     </li>
+                    {{/if}}
                 </ul>
             </div>
         </div>
     </nav>
 
-
+    {{#if errors}}
+    <div class="modal" id="modal-error" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-center">
+                    <h5 class="modal-title text-white">Ooops! Something went wrong.</h5>
+                    <span id="close-span" class="close text-light btn-lg">&times;</span>
+                </div>
+                <div class="modal-body text-danger">
+                    {{#each errors}}
+                        <p>{{this}}</p>
+                    {{/each}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="close btn btn-warning" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
 
 
     <main>
@@ -61,6 +90,7 @@
     </footer>
 
 
+    <script src="/static/js/errorMsgHandler.js"></script>
 
 </body>
 

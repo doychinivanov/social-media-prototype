@@ -57,6 +57,18 @@ em{
 }
 
 /* --------- */
+/* Error window */
+#modal-error{
+    display: block;
+}
+
+#close-span{
+    cursor: pointer;
+}
+
+.modal-footer{
+    border-top: none;
+}
 
 /* Fix landing page input */
 

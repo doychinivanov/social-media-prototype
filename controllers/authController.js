@@ -30,11 +30,24 @@ router.get('/login', (req, res)=>{
 router.post('/login', async (req,res)=>{
     try{
         await req.auth.login(req.body.email.trim(), req.body.password.trim());
-        console.log('success');
         res.redirect('/');
     } catch(err){
         console.log(err.message);
+
+        const ctx = {
+            errors: err.message.split('\n'),
+            userData: {
+                email: req.body.email
+            }
+        };
+
+        res.render('authViews/login', ctx);
     }
+});
+
+router.get('/logout', (req,res)=>{
+    req.auth.logout();
+    res.redirect('/');
 });
 
 module.exports = router;
