@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const {isUser, isGuest} = require('../middlewares/guards');
+const {errorParser} = require('../utils/errorParser');
 
 router.get('/register', isGuest(), (req, res)=>{
     res.render('authViews/register');
@@ -17,10 +18,16 @@ router.post('/register', isGuest(), async (req,res)=>{
 
     try{
         await req.auth.register(userData);
+        console.log(userData);
         console.log('success');
         res.redirect('/');
     } catch(err){
-        console.log(err.message);
+        const ctx = {
+            errors: errorParser(err),
+            userData
+        };
+
+        res.render('authViews/register', ctx);
     }
 });
 
