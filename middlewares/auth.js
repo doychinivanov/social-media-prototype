@@ -37,8 +37,9 @@ async function register(userData){
         throw new Error('Email is already taken!')
     }
 
+    const isPrivate = userData.isPrivate ? true : false;
     const hashedPassword = await bcrypt.hash(userData.password, 10);
-    const user = await userService.createUser(userData.email, userData.username, hashedPassword, userData.birthDay, userData.isPrivate);
+    const user = await userService.createUser(userData.email, userData.username, hashedPassword, new Date(userData.birthday), isPrivate);
 
     return generateToken(user);
 

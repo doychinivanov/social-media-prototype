@@ -1,12 +1,12 @@
 const User = require('../models/User');
 
-async function createUser(email, username, hashedPassword, birthDay, isPrivate){
+async function createUser(email, username, hashedPassword, birthday, isPrivate){
     const user = new User({
         email,
         username,
         hashedPassword,
-        birthDay: birthDay || null,
-        isPrivate: isPrivate || false,
+        birthday: birthday || null,
+        private: isPrivate,
         posts: [],
         following: [],
         followers: []
