@@ -26,22 +26,41 @@
             </button>
 
             <div id="navmenu" class="collapse navbar-collapse">
+
+                {{#if user}}
+                <div class="input-group nav-page-form">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-append ms-3">
+                        <a href="#"><i class="bi bi-search text-dark"></i></a>
+                    </div>
+                </div>
+                {{/if}}
+
                 <ul class="navbar-nav ms-auto text-center link-holer">
                     {{#if user}}
+
+
                     <li class="nav-item">
-                        <a href="/user/profile" class="nav-link btn-lg">Profile</a>
+                        <a href="#">
+                            <img id="profile-picture" class="img-fluid img-thumbnail"
+                                src="/static/img/anonymous-user.png" alt="">
+                        </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="/auth/logout" class="nav-link btn-lg">Logout</a>
+                        <a id="link-effect" href="/user/profile" class="nav-link btn-lg">Profile</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a id="link-effect" href="/auth/logout" class="nav-link btn-lg">Logout</a>
                     </li>
                     {{else}}
                     <li class="nav-item">
-                        <a href="/auth/login" class="nav-link btn-lg">Login</a>
+                        <a id="link-effect" href="/auth/login" class="nav-link btn-lg">Login</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="/auth/register" class="nav-link btn-lg">Register</a>
+                        <a id="link-effect" href="/auth/register" class="nav-link btn-lg">Register</a>
                     </li>
                     {{/if}}
                 </ul>
@@ -59,7 +78,7 @@
                 </div>
                 <div class="modal-body text-danger">
                     {{#each errors}}
-                        <p>{{this}}</p>
+                    <p>{{this}}</p>
                     {{/each}}
                 </div>
                 <div class="modal-footer">

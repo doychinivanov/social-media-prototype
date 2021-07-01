@@ -1,5 +1,5 @@
-.link-holer a {
-    color: #FFF;
+.link-holer #link-effect {
+    /* color: #FFF; */
     text-decoration: none;
     font: 20px Raleway;
     margin: 0px 10px;
@@ -11,8 +11,8 @@
 
 
 /* Top and Bottom borders go out */
-.link-holer a:before,
-.link-holer a:after {
+.link-holer #link-effect:before,
+.link-holer #link-effect:after {
     position: absolute;
     left: 0px;
     width: 100%;
@@ -23,18 +23,18 @@
     transition: all 0.3s;
 }
 
-.link-holer a:before {
+.link-holer #link-effect:before {
     top: 0px;
     transform: translateY(10px);
 }
 
-.link-holer a:after {
+.link-holer #link-effect:after {
     bottom: 0px;
     transform: translateY(-10px);
 }
 
-.link-holer a:hover:before,
-.link-holer a:hover:after {
+.link-holer #link-effect:hover:before,
+.link-holer #link-effect:hover:after {
     opacity: 1;
     transform: translateY(0px);
 }
@@ -70,9 +70,28 @@ em{
     border-top: none;
 }
 
+/* Style profile picture */
+#profile-picture{
+    width: 40px;
+    border-radius: 50%;
+}
+
 /* Fix landing page input */
+.nav-page-form{
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
+.nav-page-form div a{
+    width: 20px;
+}
 
 @media (min-width: 768px){
+    .nav-page-form{
+        width: 45%;
+    }
+
     .land-page-form{
         width: 60%;
     }

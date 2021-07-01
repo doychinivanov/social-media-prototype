@@ -1,3 +1,14 @@
+{{#if user}}
+
+<section class="mt-5 p-5 p-lg-0 pt-lg-5 text-center text-md-start">
+    <div class="container">
+        <div>Hello {{user.username}}</div>
+    </div>
+
+</section>
+
+
+{{else}}
 <section id="main-banner" class="mt-5 p-5 p-lg-0 pt-lg-5 text-center text-md-start">
     <div class="container">
         <div class="d-sm-flex align-items-center justify-content-between">
@@ -17,22 +28,6 @@
 
             <img class="img-fluid w-50 ms-5 d-none d-md-block"
                 src="https://cdn.pixabay.com/photo/2021/05/29/07/06/shiba-6292660_960_720.jpg" alt="">
-        </div>
-    </div>
-</section>
-
-<section id="some-input-field" class="bg-light text-dark p-5">
-    <div class="container">
-        <div class="d-md-flex justify-content-between align-items-center">
-            <h3 class="mb-3 mb-md-0 text-center">Some Action to be Done</h3>
-
-            <div class="input-group land-page-form">
-                <input type="text" class="form-control" placeholder="Enter Something">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-primary btn-mg" type="button">Button</button>
-                </div>
-            </div>
-
         </div>
     </div>
 </section>
@@ -208,3 +203,4 @@
 <div class="container my-10 p-5">
 
 </div>
+{{/if}}
