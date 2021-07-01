@@ -1,0 +1,32 @@
+.form-check-input[type=checkbox] {
+    border-radius: 50%;
+    float: none;
+}
+
+.form-check-input[type=checkbox]:hover {
+    cursor: pointer;
+}
+
+em{
+    color: lightslategray;
+}
+
+.nav-page-form{
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
+.nav-page-form div a{
+    width: 20px;
+}
+
+@media (min-width: 768px){
+    .nav-page-form{
+        width: 45%;
+    }
+
+    .land-page-form{
+        width: 60%;
+    }
+}
