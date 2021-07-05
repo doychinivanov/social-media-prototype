@@ -60,7 +60,8 @@ function generateToken(userData){
     return jwt.sign({
         _id: userData._id,
         username: userData.username,
-        email: userData.email
+        email: userData.email,
+        following: userData.following
     }, TOKEN_SECRET)
 };
 

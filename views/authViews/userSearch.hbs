@@ -1,12 +1,18 @@
 <section class="mt-5 p-5 p-lg-0 pt-lg-5 text-center text-md-start">
-    <div class="container">
-        {{#if people}}
-        {{#each people}}
-            <p>{{this}}</p>
-        {{/each}}
+    <div class="search-container">
+
+        <h3 class="ps-4 mb-3">People</h3>
+        {{#if people}} 
+
+        <ul class="list-group">
+            {{#each people}}
+            {{> foundUser}}
+            {{/each}}
+        </ul>
+
         {{else}}
-            <p>No such user in database</p>
-        {{/if}}    
+        <p>No such user in database</p>
+        {{/if}}
     </div>
 
 </section>

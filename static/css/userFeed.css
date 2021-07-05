@@ -9,3 +9,8 @@
 #post-actions>a>i{
     width: 100px;
 }
+
+.search-container{
+    width: 60%;
+    margin: auto;
+}

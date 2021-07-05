@@ -19,28 +19,35 @@ async function createUser(email, username, hashedPassword, birthday, isPrivate){
 
 async function getUserByUsername(username){
     const pattern = new RegExp(`^${username}$`, 'i');
-    const user = await User.findOne({username: {$regex: pattern}});
+    const user = await User.findOne({username: {$regex: pattern}}).populate('following').lean();
 
     return user;
 };
 
-async function getAllUsersContainingUsername(username){
-    const pattern = new RegExp(username, 'i');
-    const users = await User.find({username: {$regex: pattern}});
-
-    return users;
-}
-
-async function getUserByEmail(email){
-    const pattern = new RegExp(`^${email}$`, 'i')
-    const user = await User.findOne({email: {$regex: pattern}});
+async function getUserById(id){
+    const user = await User.findOne({_id: id}).populate('following');
 
     return user;
 }
 
+async function getAllUsersContainingUsername(username){
+    const pattern = new RegExp(username, 'i');
+    const users = await User.find({username: {$regex: pattern}}).lean();
+
+    return users;
+};
+
+async function getUserByEmail(email){
+    const pattern = new RegExp(`^${email}$`, 'i')
+    const user = await User.findOne({email: {$regex: pattern}}).populate('following');
+
+    return user;
+};
+
 module.exports = {
     createUser,
     getUserByUsername,
+    getUserById,
     getUserByEmail,
-    getAllUsersContainingUsername
+    getAllUsersContainingUsername,
 }

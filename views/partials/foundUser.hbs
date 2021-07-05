@@ -1,0 +1,21 @@
+<li class="list-group-item d-flex justify-content-between align-items-center">
+    <div>
+        <a href="#">
+            <img id="profile-picture" class="img-fluid img-thumbnail" src="/static/img/anonymous-user.png" alt="">
+        </a>
+
+        <a href="#">{{username}}</a>
+    </div>
+
+    <div>
+        {{#if isCurrentUser}}
+        
+        {{else}}
+            {{#if isAlreadyFollowed}}
+            <a href="/user/unfollow/{{_id}}" type="button" class="btn btn-light">Unfollow</a>
+            {{else}}
+            <a href="/user/follow/{{_id}}" type="button" class="btn btn-light">Follow</a>
+            {{/if}}
+        {{/if}}
+    </div>
+</li>
