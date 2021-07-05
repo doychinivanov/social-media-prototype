@@ -2,6 +2,7 @@
 @import '/static/css/profilePicture.css';
 @import '/static//css/forms.css';
 @import '/static/css/navbar.css';
+@import '/static/css/userFeed.css';
 
 .centered-div{
     margin: auto;

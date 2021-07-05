@@ -1,6 +1,98 @@
 <section class="mt-5 p-5 p-lg-0 pt-lg-5 text-center text-md-start">
     <div class="container">
-        <div>Hello {{user.username}}</div>
+        <div class="row">
+            <div class="col border px-0">
+                <div class="py-1">
+                    <span>People you follow</span>
+                </div>
+
+                <div class="">
+                    <ul class="list-group">
+                        {{!-- Make into partial --}}
+                        <li class="list-group-item list-group-item-light"><a href="#">Dasha</a></li>
+                        <li class="list-group-item list-group-item-light"><a href="#">Erik</a></li>
+                        <li class="list-group-item list-group-item-light"><a href="#">Kalata</a></li>
+                        <li class="list-group-item list-group-item-light"><a href="#">Tzfqtko</a></li>
+                        <li class="list-group-item list-group-item-light"><a href="#">Pesho</a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+            <div class="col-7 border px-0">
+                <div class="text-center bg-light border py-1">
+                    <span>News Feed</span>
+                </div>
+
+                {{!-- Make int partial --}}
+                <article id="feed-article" class="m-auto my-4">
+                    <div id="header" class="d-flex justify-content-between align-items-center bg-secondary px-2 rounded">
+                        <div id="author">
+                            <a href="#">
+                                <img id="profile-picture" class="img-fluid img-thumbnail"
+                                    src="/static/img/anonymous-user.png" alt="">
+                            </a>
+
+                            <a href="">Kalata</a>
+                        </div>
+
+                        <div id="likes">
+                            <span class="font-italic">5 likes</span>
+                        </div>
+                    </div>
+
+                    <div id="body" class="px-2">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui possimus temporibus ullam magnam
+                            ducimus iure labore ad perferendis, ipsa recusandae quam vitae harum modi molestiae aliquam
+                            sint aut sed tempore?</p>
+                    </div>
+                </article>
+
+                <article id="feed-article" class="m-auto my-4">
+                    <div id="header" class="d-flex justify-content-between align-items-center bg-secondary px-2 rounded">
+                        <div id="author">
+                            <a href="#">
+                                <img id="profile-picture" class="img-fluid img-thumbnail"
+                                    src="/static/img/anonymous-user.png" alt="">
+                            </a>
+
+                            <a href="">Tzfqtko</a>
+                        </div>
+
+                        <div id="likes">
+                            <span class="font-italic">2 likes</span>
+                        </div>
+                    </div>
+
+                    <div id="body" class="px-2">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui possimus temporibus ullam magnam
+                            ducimus iure labore ad perferendis, ipsa recusandae quam vitae harum modi molestiae aliquam
+                            sint aut sed tempore?</p>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="col border px-0">
+                <div class="col text-center border py-1">
+                    <span>Chat Rooms</span>
+                </div>
+
+                <div class="list-group">
+                    {{!-- Add aria-current="true"on the frontend to show current anchor --}}
+                    <a href="#" class="list-group-item list-group-item-action active">
+                        js app
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">family <span
+                            class="badge bg-primary rounded-pill">14</span></a>
+                    <a href="#" class="list-group-item list-group-item-action">work</a>
+                    <a href="#" class="list-group-item list-group-item-action">friends <span
+                            class="badge bg-primary rounded-pill">3</span></a>
+                </div>
+            </div>
+
+        </div>
     </div>
 
 </section>
