@@ -13,7 +13,7 @@ function isGuest(){
         if(!req.user){
             next();
         } else {
-            res.redirect('/');
+            res.redirect('/user/feed');
         }
     }
 };

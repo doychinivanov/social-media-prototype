@@ -30,7 +30,7 @@ body('rePass').custom((value, {req})=>{if(value != req.body.password){throw new 
         }
 
         await req.auth.register(userData);
-        res.redirect('/');
+        res.redirect('/user/feed');
     } catch(err){
         const ctx = {
             errors: errorParser(err),
@@ -58,7 +58,7 @@ body('password').notEmpty().withMessage('All fields are required!'),
         }
 
         await req.auth.login(req.body.email.trim(), req.body.password.trim());
-        res.redirect('/');
+        res.redirect('/user/feed');
     } catch(err){
         const ctx = {
             errors: errorParser(err),
