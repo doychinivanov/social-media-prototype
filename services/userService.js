@@ -18,11 +18,18 @@ async function createUser(email, username, hashedPassword, birthday, isPrivate){
 };
 
 async function getUserByUsername(username){
-    const pattern = new RegExp(`^${username}$`, 'i')
+    const pattern = new RegExp(`^${username}$`, 'i');
     const user = await User.findOne({username: {$regex: pattern}});
 
     return user;
 };
+
+async function getAllUsersContainingUsername(username){
+    const pattern = new RegExp(username, 'i');
+    const users = await User.find({username: {$regex: pattern}});
+
+    return users;
+}
 
 async function getUserByEmail(email){
     const pattern = new RegExp(`^${email}$`, 'i')
@@ -34,5 +41,6 @@ async function getUserByEmail(email){
 module.exports = {
     createUser,
     getUserByUsername,
-    getUserByEmail
+    getUserByEmail,
+    getAllUsersContainingUsername
 }

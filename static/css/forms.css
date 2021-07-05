@@ -21,6 +21,11 @@ em{
     width: 20px;
 }
 
+#navmenu>form>button{
+    border: none;
+    background: none;
+}
+
 @media (min-width: 768px){
     .nav-page-form{
         width: 45%;

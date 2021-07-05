@@ -1,0 +1,12 @@
+<section class="mt-5 p-5 p-lg-0 pt-lg-5 text-center text-md-start">
+    <div class="container">
+        {{#if people}}
+        {{#each people}}
+            <p>{{this}}</p>
+        {{/each}}
+        {{else}}
+            <p>No such user in database</p>
+        {{/if}}    
+    </div>
+
+</section>
