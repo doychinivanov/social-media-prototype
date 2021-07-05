@@ -1,12 +1,16 @@
 const router = require('express').Router();
-const {getAllUsersContainingUsername} = require('../services/userService');
+const {getAllUsersContainingUsername, getUserById} = require('../services/userService');
 const {isUser, isGuest} = require('../middlewares/guards');
 const {errorParser} = require('../utils/errorParser');
 
 
 
-router.get('/feed', isUser(), (req, res)=>{
-    res.render('authViews/userHome');
+router.get('/feed', isUser(), async (req, res)=>{
+    const dataForCurrentUser = await getUserById(req.user._id);
+    const ctx = {
+        following: dataForCurrentUser.following
+    }
+    res.render('authViews/userHome', ctx);
 });
 
 router.get('/search', isUser(), async (req,res)=>{

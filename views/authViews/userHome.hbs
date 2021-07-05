@@ -6,14 +6,15 @@
                     <span>People you follow</span>
                 </div>
 
-                <div class="">
+                <div>
                     <ul class="list-group">
-                        {{!-- Make into partial --}}
-                        <li class="list-group-item list-group-item-light"><a href="#">Dasha</a></li>
-                        <li class="list-group-item list-group-item-light"><a href="#">Erik</a></li>
-                        <li class="list-group-item list-group-item-light"><a href="#">Kalata</a></li>
-                        <li class="list-group-item list-group-item-light"><a href="#">Tzfqtko</a></li>
-                        <li class="list-group-item list-group-item-light"><a href="#">Pesho</a></li>
+                        {{#if following}}
+                        {{#each following}}
+                            <li class="list-group-item list-group-item-light"><a href="#">{{username}}</a></li>
+                        {{/each}}
+                        {{else}}
+                            <li class="list-group-item list-group-item-light">You havent't followed anyone yet</li>
+                        {{/if}}
                     </ul>
                 </div>
 

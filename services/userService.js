@@ -25,14 +25,14 @@ async function getUserByUsername(username){
 };
 
 async function getUserById(id){
-    const user = await User.findOne({_id: id}).populate('following');
+    const user = await User.findById(id).populate('following').lean();
 
     return user;
 }
 
 async function getAllUsersContainingUsername(username){
     const pattern = new RegExp(username, 'i');
-    const users = await User.find({username: {$regex: pattern}}).lean();
+    const users = await User.find({username: {$regex: pattern}}).populate('following').lean();
 
     return users;
 };
