@@ -27,8 +27,9 @@
 
                 {{!-- Make int partial --}}
                 <article id="feed-article" class="m-auto my-4">
-                    <div id="header" class="d-flex justify-content-between align-items-center bg-secondary px-2 rounded">
-                        <div id="author">
+                    <div id="header"
+                        class="d-flex justify-content-between align-items-center bg-secondary px-2 rounded">
+                        <div id="post-author">
                             <a href="#">
                                 <img id="profile-picture" class="img-fluid img-thumbnail"
                                     src="/static/img/anonymous-user.png" alt="">
@@ -37,21 +38,27 @@
                             <a href="">Kalata</a>
                         </div>
 
-                        <div id="likes">
+                        <div id="post-likes">
                             <span class="font-italic">5 likes</span>
                         </div>
                     </div>
 
-                    <div id="body" class="px-2">
+                    <div id="post-body" class="px-2">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui possimus temporibus ullam magnam
                             ducimus iure labore ad perferendis, ipsa recusandae quam vitae harum modi molestiae aliquam
                             sint aut sed tempore?</p>
                     </div>
+
+                    <div id="post-actions" class="d-flex flex-row-reverse">
+                        <a href="#"><i class="bi bi-chat-dots-fill"></i></a>
+                        <a href="#"><i class="bi bi-heart mx-1"></i></a>
+                    </div>
                 </article>
 
                 <article id="feed-article" class="m-auto my-4">
-                    <div id="header" class="d-flex justify-content-between align-items-center bg-secondary px-2 rounded">
-                        <div id="author">
+                    <div id="header"
+                        class="d-flex justify-content-between align-items-center bg-secondary px-2 rounded">
+                        <div id="post-author">
                             <a href="#">
                                 <img id="profile-picture" class="img-fluid img-thumbnail"
                                     src="/static/img/anonymous-user.png" alt="">
@@ -60,15 +67,20 @@
                             <a href="">Tzfqtko</a>
                         </div>
 
-                        <div id="likes">
+                        <div id="post-likes">
                             <span class="font-italic">2 likes</span>
                         </div>
                     </div>
 
-                    <div id="body" class="px-2">
+                    <div id="post-body" class="px-2">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui possimus temporibus ullam magnam
                             ducimus iure labore ad perferendis, ipsa recusandae quam vitae harum modi molestiae aliquam
                             sint aut sed tempore?</p>
+                    </div>
+
+                    <div id="post-actions" class="d-flex flex-row-reverse align-items-center">
+                        <a href="#"><i class="bi bi-chat-dots-fill"></i></a>
+                        <a href="#"><i class="bi bi-heart mx-1"></i></a>
                     </div>
                 </article>
 

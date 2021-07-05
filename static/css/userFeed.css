@@ -2,6 +2,10 @@
     width: 80%;
 }
 
-#likes>span{
+#post-likes>span{
     font-style: italic;
+}
+
+#post-actions>a>i{
+    width: 100px;
 }
