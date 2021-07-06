@@ -61,7 +61,6 @@ function generateToken(userData){
         _id: userData._id,
         username: userData.username,
         email: userData.email,
-        following: userData.following
     }, TOKEN_SECRET)
 };
 
