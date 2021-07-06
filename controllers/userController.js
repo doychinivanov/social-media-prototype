@@ -51,4 +51,18 @@ router.get('/follow/:id', isUser(), async (req,res)=>{
 
 });
 
+router.get('/unfollow/:id', isUser(), async (req,res)=>{
+    const backUrl = req.header('Referer') || '/';
+    try{
+        await req.actions.unfollowPerson(req.params.id);
+        res.redirect(backUrl);
+    } catch(err){
+        const ctx = {
+            errors: errorParser(err)
+        };
+        
+        res.render('authViews/userHome', ctx);
+    }
+});
+
 module.exports = router;
