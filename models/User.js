@@ -6,7 +6,7 @@ const schema = new Schema({
     hashedPassword: {type: String, required: [true, 'Password is required!']},
     private: {type: Boolean, default: false},
     birthday: {type: Date, default: null},
-    posts: [{}],
+    posts: [{type: Schema.Types.ObjectId, ref: 'Post', default: []}],
     following: [{type: Schema.Types.ObjectId, ref: 'User', default: []}],
     followers: [{type: Schema.Types.ObjectId, ref: 'User', default: []}]
 });

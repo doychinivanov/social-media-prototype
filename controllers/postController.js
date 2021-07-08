@@ -16,7 +16,7 @@ async (req, res) => {
             throw new Error(Object.values(errors).map(e => e.msg).join('\n'));
         }
 
-        console.log(req.body.postBody.trim());
+        await req.storage.createPost(req.user._id, req.body.postBody.trim());
     } catch (err) {
         const errors = errorParser(err);
         const token = generateToken(errors);

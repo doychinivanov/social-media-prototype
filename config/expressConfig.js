@@ -3,6 +3,7 @@ const hbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const authMiddleware = require('../middlewares/auth');
 const userActions = require('../middlewares/userActions');
+const storage = require('../middlewares/storage');
 
 module.exports = (app) => {
     app.engine('hbs', hbs({
@@ -16,4 +17,5 @@ module.exports = (app) => {
 
     app.use(authMiddleware());
     app.use(userActions());
+    app.use(storage());
 }

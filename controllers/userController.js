@@ -6,19 +6,21 @@ const {errorParser} = require('../utils/errorParser');
 const {parseErrorFromCookie} = require('../utils/parseErrFromCookie');
 
 router.get('/feed', isUser(), async (req, res)=>{
-    const ctx = {}
+    const ctx = {};
+    ctx.errors = [];
     const err = parseErrorFromCookie(req);
     try{
         const dataForCurrentUser = await getUserById(req.user._id);
+        const posts = await req.storage.getPostsByAuthorId(req.user._id);
+        console.log(posts)
         ctx.following = dataForCurrentUser.following.map(person => ({username: person.username, _id: person._id}))
         
         if(err != true){
             ctx.errors = err.errors;
             throw new Error('');
         }
-
     } catch(error){
-        ctx.errors.push(errorParser(error));
+        ctx.errors.push('Something went wrong. Please try again later!');
         res.clearCookie(COOKIE_ERROR);
     }
 
