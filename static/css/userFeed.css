@@ -1,4 +1,5 @@
-#feed-article{
+#feed-article,
+#post-from{
     width: 80%;
 }
 
@@ -17,4 +18,5 @@
 
 .bi-heart-fill{
     color: black;
+    margin-right: 2px;
 }

@@ -10,10 +10,10 @@
                     <ul class="list-group">
                         {{#if following}}
                         {{#each following}}
-                            <li class="list-group-item list-group-item-light"><a href="#">{{username}}</a></li>
+                        <li class="list-group-item list-group-item-light"><a href="#">{{username}}</a></li>
                         {{/each}}
                         {{else}}
-                            <li class="list-group-item list-group-item-light">You havent't followed anyone yet</li>
+                        <li class="list-group-item list-group-item-light">You havent't followed anyone yet</li>
                         {{/if}}
                     </ul>
                 </div>
@@ -25,6 +25,18 @@
                 <div class="text-center bg-light border py-1">
                     <span>News Feed</span>
                 </div>
+
+                <form action="/post/create" method="POST">
+                    <div id="post-from" class="form-group m-auto">
+                        <textarea id="post-body" name="postBody" class="form-control mt-3" rows="3" placeholder="Share your toughts with the world...">
+                        </textarea>
+
+                        <div class="d-flex align-items-end flex-column bd-highlight mb-3">
+                        <input type="submit" class="btn btn-outline-primary mt-1 px-4" value="Post"></input>
+
+                        </div>
+                    </div>
+                </form>
 
                 {{!-- Make int partial --}}
                 <article id="feed-article" class="m-auto my-4">
@@ -111,3 +123,4 @@
 </section>
 
 <script src="/static/js/likePost.js"></script>
+<script src="/static/js/focusTextArea.js"></script>

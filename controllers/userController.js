@@ -1,14 +1,25 @@
 const router = require('express').Router();
+const {COOKIE_ERROR} = require('../config/index');
 const {getAllUsersContainingUsername, getUserById} = require('../services/userService');
-const {isUser, isGuest} = require('../middlewares/guards');
+const {isUser} = require('../middlewares/guards');
 const {errorParser} = require('../utils/errorParser');
-
-
+const {parseErrorFromCookie} = require('../utils/parseErrFromCookie');
 
 router.get('/feed', isUser(), async (req, res)=>{
-    const dataForCurrentUser = await getUserById(req.user._id);
-    const ctx = {
-        following: dataForCurrentUser.following.map(person => ({username: person.username, _id: person._id}))
+    const ctx = {}
+    const err = parseErrorFromCookie(req);
+    try{
+        const dataForCurrentUser = await getUserById(req.user._id);
+        ctx.following = dataForCurrentUser.following.map(person => ({username: person.username, _id: person._id}))
+        
+        if(err != true){
+            ctx.errors = err.errors;
+            throw new Error('');
+        }
+
+    } catch(error){
+        ctx.errors.push(errorParser(error));
+        res.clearCookie(COOKIE_ERROR);
     }
 
     res.render('authViews/userHome', ctx);
