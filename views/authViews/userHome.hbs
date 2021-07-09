@@ -10,7 +10,8 @@
                     <ul class="list-group">
                         {{#if following}}
                         {{#each following}}
-                        <li class="list-group-item list-group-item-light"><a href="#">{{username}}</a></li>
+                        <li class="list-group-item list-group-item-light"><a
+                                href="/user/prifle/{{_id}}">{{username}}</a></li>
                         {{/each}}
                         {{else}}
                         <li class="list-group-item list-group-item-light">You havent't followed anyone yet</li>
@@ -27,25 +28,28 @@
                 </div>
 
                 <form action="/post/create" method="POST">
-                    <div id="post-from" class="form-group m-auto">
-                        <textarea id="post-body" name="postBody" class="form-control mt-3" rows="3" placeholder="Share your toughts with the world...">
+                    <div class="form-group m-auto post-from">
+                        <textarea id="post-body" name="postBody" class="form-control mt-3" rows="3"
+                            placeholder="Share your toughts with the world...">
                         </textarea>
 
                         <div class="d-flex align-items-end flex-column bd-highlight mb-3">
-                        <input type="submit" class="btn btn-outline-primary mt-1 px-4" value="Post"></input>
+                            <input type="submit" class="btn btn-outline-primary mt-1 px-4" value="Post"></input>
 
                         </div>
                     </div>
                 </form>
 
-                {{!-- Make int partial --}}
-                {{#if posts}}
-                {{#each posts}}
-                {{> post}}
-                {{/each}}
-                {{else}}
+                <div id="posts-holder">
+                    {{#if posts}}
+                    {{#each posts}}
+                    {{> post}}
+                    {{/each}}
+                    {{else}}
                     <p class="text-center m-auto my-4">Nothing to show yet.</p>
-                {{/if}}
+                    {{/if}}
+                </div>
+
             </div>
 
             <div class="col border px-0">
@@ -71,5 +75,6 @@
 
 </section>
 
+<script src="/static/js/comments.js"></script>
 <script src="/static/js/scrollPostition.js"></script>
 <script src="/static/js/focusTextArea.js"></script>

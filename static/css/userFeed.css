@@ -1,9 +1,9 @@
 .feed-article,
-#post-from{
+.post-from{
     width: 80%;
 }
 
-#post-likes>span{
+.post-likes>span{
     font-style: italic;
 }
 
@@ -18,4 +18,9 @@
 
 .bi-heart-fill{
     margin-right: 2px;
+}
+
+.comment{
+    width: 90%;
+    margin: auto;
 }

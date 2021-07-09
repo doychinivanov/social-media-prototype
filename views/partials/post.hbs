@@ -6,9 +6,11 @@
             </a>
 
             <a href="/user/profile/{{author._id}}">{{author.username}}</a>
+
+            <span>{{createdAt}}</span>
         </div>
 
-        <div id="post-likes">
+        <div class="post-likes pe-1">
             <span class="font-italic">{{likes.length}} {{#if likesAreOne}} like {{else}} likes {{/if}}</span>
             {{#if currentUserIsAuthor}}
             <span><a href="/post/delete/{{_id}}">Delete</a></span>
@@ -16,17 +18,61 @@
         </div>
     </div>
 
-    <div id="post-body" class="px-2">
-        <p>{{content}}</p>
-    </div>
+    <div class="bg-light py-2">
+        <div class="px-4">
+            <p>{{content}}</p>
+        </div>
 
-    <div class="d-flex flex-row-reverse align-items-center post-actions">
-        <a href="#"><i class="bi bi-chat-dots-fill"></i></a>
+        <div class="d-flex flex-row-reverse align-items-center post-actions pe-2">
+            <a href="javascript:void(0)"><i class="bi bi-chat-dots-fill"></i></a>
 
-        {{#if postIsLikedByCurrentUser}}
+            {{#if postIsLikedByCurrentUser}}
             <a href="/post/unlike/{{_id}}"><i style="color:red;" class="bi bi-heart-fill"></i></a>
-        {{else}}
+            {{else}}
             <a href="/post/like/{{_id}}"><i style="color:black;" class="bi bi-heart-fill"></i></a>
-        {{/if}}
+            {{/if}}
+        </div>
+
     </div>
+
+
+    <div style="display: none;" class="comment-field text-justify bg-light border-top border-2 pt-3 pb-3 ps-1">
+        <h5 class="pb-2 ps-2">Comments:</h5>
+
+        {{!-- Partial --}}
+        <div class="comment p-3 border border-2 rounded">
+            <div class="d-flex align-items-center border-bottom">
+                <a href="#">
+                    <img id="profile-picture" class="img-fluid img-thumbnail" src="/static/img/anonymous-user.png"
+                        alt="">
+                </a>
+                <a href="">
+                    <h6>Jhon Doe</h6>
+                </a> <span>- 20 October, 2018</span> <br>
+            </div>
+
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero
+                sequi
+                velit molestias doloremque molestiae dicta?</p>
+        </div>
+
+        <div class="d-flex align-items-end flex-column bd-highlight my-3 pe-4">
+            <button class="btn btn-outline-primary mt-1 px-4 add-comment">Add Comment</button>
+        </div>
+
+        <form style="display: none;" class="comment-input">
+            <div class="form-group m-auto post-from">
+                <h6 class="pb-2 ps-2">Your comment:</h6>
+                <textarea id="post-body" name="postBody" class="form-control mt-3" rows="3"
+                    placeholder="Share your toughts with the world...">
+                        </textarea>
+
+                <div class="d-flex align-items-end flex-column bd-highlight mb-3">
+                    <input type="submit" class="btn btn-outline-primary mt-1 px-4" value="Add"></input>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
 </article>

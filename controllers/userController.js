@@ -25,7 +25,7 @@ router.get('/feed', isUser(), async (req, res)=>{
             content: post.content,
             likes: post.likes,
             likesAreOne: post.likes.length == 1,
-            createdAt: post.createdAt
+            createdAt: post.createdAt.toLocaleString()
         }));
 
         ctx.following = dataForCurrentUser.following.map(person => ({username: person.username, _id: person._id}))
