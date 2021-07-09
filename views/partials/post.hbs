@@ -1,0 +1,24 @@
+<article class="m-auto my-4 feed-article">
+    <div id="header" class="d-flex justify-content-between align-items-center bg-secondary px-2 rounded">
+        <div id="post-author">
+            <a href="/user/profile/{{author._id}}">
+                <img id="profile-picture" class="img-fluid img-thumbnail" src="/static/img/anonymous-user.png" alt="">
+            </a>
+
+            <a href="/user/profile/{{author._id}}">{{author.username}}</a>
+        </div>
+
+        <div id="post-likes">
+            <span class="font-italic">{{likes.length}} likes</span>
+        </div>
+    </div>
+
+    <div id="post-body" class="px-2">
+        <p>{{content}}</p>
+    </div>
+
+    <div class="d-flex flex-row-reverse align-items-center post-actions">
+        <a href="#"><i class="bi bi-chat-dots-fill"></i></a>
+        <a href="#"><i class="bi bi-heart-fill"></i></a>
+    </div>
+</article>

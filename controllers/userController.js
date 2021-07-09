@@ -11,8 +11,13 @@ router.get('/feed', isUser(), async (req, res)=>{
     const err = parseErrorFromCookie(req);
     try{
         const dataForCurrentUser = await getUserById(req.user._id);
-        const posts = await req.storage.getPostsByAuthorId(req.user._id);
-        console.log(posts)
+
+        const userFollowing = dataForCurrentUser.following.map(x => x._id);
+        userFollowing.push(req.user._id);
+
+        const posts = await req.storage.getPostsByFollowingId(userFollowing);
+
+        ctx.posts = posts.map(post => ({author: {username:post.author.username, _id: post.author._id}, _id: post._id, content: post.content, likes: post.likes, createdAt: post.createdAt}))
         ctx.following = dataForCurrentUser.following.map(person => ({username: person.username, _id: person._id}))
         
         if(err != true){
