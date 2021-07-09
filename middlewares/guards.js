@@ -18,7 +18,18 @@ function isGuest(){
     }
 };
 
+function isOwner(){
+    return (req, res, next)=>{
+        if(req.data.currentUsersPost && req.user && (req.data.currentUsersPost.find(x => x==req.params.id))){
+            next();
+        } else {
+            res.redirect('/user/feed');
+        }
+    }
+}
+
 module.exports = {
     isUser,
-    isGuest
+    isGuest,
+    isOwner
 }

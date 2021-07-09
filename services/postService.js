@@ -57,6 +57,10 @@ async function unlikePost(postId, userId){
     await post.save();
 
     return post;
+};
+
+async function deletePost(postId){
+    return Post.findByIdAndDelete(postId);
 }
 
 module.exports = {
@@ -64,5 +68,6 @@ module.exports = {
     getPostsByAuthorId,
     getPostsByFollowingId,
     likePost,
-    unlikePost
+    unlikePost,
+    deletePost
 }
