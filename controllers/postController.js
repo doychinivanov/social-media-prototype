@@ -28,4 +28,30 @@ async (req, res) => {
     res.redirect('/user/feed')
 });
 
+router.get('/like/:id', isUser(), async (req, res) => {
+    try{
+        await req.storage.likePost(req.params.id, req.user._id);
+    } catch(err){
+        const errors = errorParser(err);
+        const token = generateToken(errors);
+
+        res.cookie(COOKIE_ERROR, token);
+    }
+
+    res.redirect('/user/feed');
+});
+
+router.get('/unlike/:id', isUser(), async(req,res)=>{
+    try{
+        await req.storage.unlikePost(req.params.id, req.user._id);
+    } catch(err){
+        const errors = errorParser(err);
+        const token = generateToken(errors);
+
+        res.cookie(COOKIE_ERROR, token);
+    }
+
+    res.redirect('/user/feed');
+});
+
 module.exports = router;

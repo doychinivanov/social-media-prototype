@@ -9,7 +9,10 @@
         </div>
 
         <div id="post-likes">
-            <span class="font-italic">{{likes.length}} likes</span>
+            <span class="font-italic">{{likes.length}} {{#if likesAreOne}} like {{else}} likes {{/if}}</span>
+            {{#if currentUserIsAuthor}}
+            <span><a href="">Delete</a></span>
+            {{/if}}
         </div>
     </div>
 
@@ -19,6 +22,11 @@
 
     <div class="d-flex flex-row-reverse align-items-center post-actions">
         <a href="#"><i class="bi bi-chat-dots-fill"></i></a>
-        <a href="#"><i class="bi bi-heart-fill"></i></a>
+
+        {{#if postIsLikedByCurrentUser}}
+            <a href="/post/unlike/{{_id}}"><i style="color:red;" class="bi bi-heart-fill"></i></a>
+        {{else}}
+            <a href="/post/like/{{_id}}"><i style="color:black;" class="bi bi-heart-fill"></i></a>
+        {{/if}}
     </div>
 </article>

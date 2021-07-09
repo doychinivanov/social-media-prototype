@@ -17,15 +17,28 @@ router.get('/feed', isUser(), async (req, res)=>{
 
         const posts = await req.storage.getPostsByFollowingId(userFollowing);
 
-        ctx.posts = posts.map(post => ({author: {username:post.author.username, _id: post.author._id}, _id: post._id, content: post.content, likes: post.likes, createdAt: post.createdAt}))
+        ctx.posts = posts.map(post => ({
+            currentUserIsAuthor: req.user._id == post.author._id,
+            postIsLikedByCurrentUser: post.likes.includes(req.user._id),
+            author: {username:post.author.username, _id: post.author._id},
+            _id: post._id,
+            content: post.content,
+            likes: post.likes,
+            likesAreOne: post.likes.length == 1,
+            createdAt: post.createdAt
+        }));
+
         ctx.following = dataForCurrentUser.following.map(person => ({username: person.username, _id: person._id}))
-        
+
         if(err != true){
             ctx.errors = err.errors;
             throw new Error('');
         }
     } catch(error){
-        ctx.errors.push('Something went wrong. Please try again later!');
+        if(ctx.errors.length == 0){
+            ctx.errors.push('Something went wrong. Please try again later!');
+        }
+
         res.clearCookie(COOKIE_ERROR);
     }
 
