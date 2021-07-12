@@ -14,6 +14,7 @@ module.exports = (app) => {
     app.set('view engine', 'hbs');
     app.use('/static', express.static('static'));
     app.use(express.urlencoded({extended:true}));
+    app.use(express.json());
     app.use(cookieParser());
 
     app.use(authMiddleware());

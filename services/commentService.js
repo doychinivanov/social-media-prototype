@@ -10,11 +10,11 @@ async function getCommentsByPostId(postId){
     }))
 }
 
-async function createComment(postId, author, content){
+async function createComment(postId, body){
     const comment = new Comment({
-        author,
+        author: body.author,
         createdAt: new Date(),
-        content,
+        content: body.content,
         postId
     });
 
@@ -22,6 +22,19 @@ async function createComment(postId, author, content){
 
     return comment;
 }
+
+// async function createComment(postId, author, content){
+//     const comment = new Comment({
+//         author,
+//         createdAt: new Date(),
+//         content,
+//         postId
+//     });
+
+//     await comment.save();
+
+//     return comment;
+// }
 
 module.exports = {
     getCommentsByPostId,
