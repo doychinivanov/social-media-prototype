@@ -1,4 +1,4 @@
-import {getCommentsByPostId, createComment} from './api/api.js';
+import {getCommentsByPostId, createComment, delComment} from './api/api.js';
 import {commentsSlide} from './viewsFrontEnd/commentsView.js';
 import {render} from 'https://unpkg.com/lit-html?module';
 
@@ -20,6 +20,8 @@ postHolder.addEventListener('click', async (ev)=>{
             ev.target.textContent = ev.target.textContent == 'Add Comment' ? 'Show Less' : 'Add Comment';
             commentForm.style.display = commentForm.style.display == 'block' ? 'none' : 'block';
         });
+    } else if(ev.target.classList.contains('del-comment')){
+        await commentRemove(ev);
     }
 });
 
@@ -30,7 +32,17 @@ postHolder.addEventListener('click', async (ev)=>{
     const content = formData.get('commentContent').trim();
     const postId = ev.currentTarget.action.split('\/').pop();
 
-    await createComment(postId, {content});
+    if(content == ''){
+        alert('You can\'t post an empty comment');
+        return;
+    }
+
+    const response = await createComment(postId, {content});
+
+    if(response.status !== 201){
+        alert('You can\'t post an empty comment');
+        return;
+    }
 
     loadComments(ev);
     ev.target.reset();
@@ -41,7 +53,9 @@ async function loadComments(ev){
 
     const commentsHolder = article.querySelector('.comments-in-here');
     const comments = await getCommentsByPostId(article.id);
-    render(commentsSlide(comments), commentsHolder);
+    const currentUserId = document.cookie.split('CURRENT_USER_TOKEN=')[1];
+
+    render(commentsSlide(currentUserId, comments), commentsHolder);
 };
 
 
@@ -53,4 +67,11 @@ function getCurrentPost(ev){
     };
 
     return article;
+}
+
+export async function commentRemove(ev){
+    const commentId = ev.target.id;
+    await delComment(commentId);
+
+    loadComments(ev);
 }

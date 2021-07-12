@@ -11,4 +11,8 @@ export async function createComment(postId, body){
      headers: {'Content-Type' : 'application/json'},
      body: JSON.stringify(body)
     });
+};
+
+export async function delComment(commentId){
+    return await fetch('http://localhost:3000/comments/delete/' + commentId, {method: 'delete'});
 }

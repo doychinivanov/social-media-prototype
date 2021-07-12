@@ -6,9 +6,16 @@ async function getCommentsByPostId(postId){
     return comments.map(x=>({
         author: {username: x.author.username, authorId: x.author._id},
         content: x.content,
-        createdAt: x.createdAt.toLocaleString()
+        createdAt: x.createdAt.toLocaleString(),
+        _id: x._id
     }))
 }
+
+async function getCommentsByAuthorId(id){
+    const comments = await Comment.find({'author': id}).populate('author');
+
+    return comments;
+};
 
 async function createComment(postId, body){
     const comment = new Comment({
@@ -23,20 +30,13 @@ async function createComment(postId, body){
     return comment;
 }
 
-// async function createComment(postId, author, content){
-//     const comment = new Comment({
-//         author,
-//         createdAt: new Date(),
-//         content,
-//         postId
-//     });
-
-//     await comment.save();
-
-//     return comment;
-// }
+async function deleteComment(commentId){
+    return Comment.findByIdAndDelete(commentId);
+}
 
 module.exports = {
     getCommentsByPostId,
-    createComment
+    createComment,
+    deleteComment,
+    getCommentsByAuthorId
 }

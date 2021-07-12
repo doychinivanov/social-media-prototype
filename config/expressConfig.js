@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const authMiddleware = require('../middlewares/auth');
 const userActions = require('../middlewares/userActions');
 const storage = require('../middlewares/storage');
-const {preloadPosts} = require('../middlewares/preloadData');
+const {preloadPosts, preloadComments} = require('../middlewares/preloadData');
 
 module.exports = (app) => {
     app.engine('hbs', hbs({
@@ -21,4 +21,5 @@ module.exports = (app) => {
     app.use(userActions());
     app.use(storage());
     app.use(preloadPosts());
+    app.use(preloadComments());
 }

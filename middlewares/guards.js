@@ -28,8 +28,19 @@ function isOwner(){
     }
 }
 
+function isCommentOwner(){
+    return (req, res, next)=>{
+        if(req.data.currentUsersComments && req.user && (req.data.currentUsersComments.find(x => x==req.params.id))){
+            next();
+        } else {
+            res.redirect('/user/feed');
+        }
+    }
+}
+
 module.exports = {
     isUser,
     isGuest,
-    isOwner
+    isOwner,
+    isCommentOwner
 }

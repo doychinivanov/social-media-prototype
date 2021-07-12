@@ -72,12 +72,12 @@ function parseToken(req, res){
             const userData = jwt.verify(token, TOKEN_SECRET);
             req.user = userData;
             res.locals.user = userData;
+            res.cookie('CURRENT_USER_TOKEN', userData._id)
         } catch(err){
             res.clearCookie(COOKIE_NAME);
             res.redirect('/auth/login');
             return false;
         }
-
     };
 
     return true;
