@@ -2,21 +2,31 @@
     <div class="container">
         <div class="d-sm-flex align-items-center justify-content-between">
             <div>
-                <h1>Here should be <span class="text-primary">a title</span></h1>
+                <h1>Welcome to <span class="text-primary">project name</span></h1>
 
                 <p class="lead">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error ullam odio modi ducimus
-                    tempore ex molestiae voluptatibus ea aliquam veniam minus cumque, omnis odit, dolores
-                    aspernatur. Similique tempore eligendi optio.
+                    "Project name" is a free social media web application, where you can create your personal profile,
+                    share your posts with your followers, find people, follow them, like and comment their posts and
+                    participate in chat rooms.
                 </p>
 
-                <button class="btn btn-primary btn-lg">
-                    some action
-                </button>
+                <p class="lead">
+                    Join us and have fun!
+                </p>
+
+                <a href="/auth/register" class="btn btn-primary btn-lg">
+                    Start now
+                </a>
             </div>
 
-            <img class="img-fluid w-50 ms-5 d-none d-md-block"
-                src="https://cdn.pixabay.com/photo/2021/05/29/07/06/shiba-6292660_960_720.jpg" alt="">
+            {{!-- <img id="worldwide" class="img-fluid ms-5 d-none d-md-block" src="/static/img/worldwide.svg" alt="">
+            --}}
+
+            <img id="worldwide" class="img-fluid ms-5 d-none d-md-block" src="/static/img/relax.svg" alt="">
+
+            {{!-- <img id="worldwide" class="img-fluid ms-5 d-none d-md-block" src="/static/img/working.svg" alt=""> --}}
+
+            {{!-- <img id="worldwide" class="img-fluid ms-5 d-none d-md-block" src="/static/img/man.svg" alt=""> --}}
         </div>
     </div>
 </section>
@@ -27,19 +37,43 @@
             <div class="col-md">
                 <div class="card bg-light text-dark">
                     <div class="h1 mb-3">
+                        <i class="bi bi-terminal"></i>
+                    </div>
+
+                    <h3 class="card-title mb-3">
+                        Project Name
+                    </h3>
+
+                    <p class="card-text mx-1">
+                        "Project name" is a project, developed by Doychin Ivanov. The application is open source and
+                        free to use. Take a look behind the curtains in "project name"'s repo.
+                    </p>
+
+                    <a target="_blank" href="https://github.com/doychinivanov/social-media-prototype"
+                        class="btn btn-outline-primary w-50 m-auto mb-4">See Repo <i class="bi bi-github"></i></a>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card bg-light text-dark">
+                    <div class="h1 mb-3">
                         <i class="bi bi-laptop"></i>
                     </div>
 
                     <h3 class="card-title mb-3">
-                        Title
+                        Other Projects
                     </h3>
 
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, nulla consequatur explicabo
-                        accusamus eius officia iste enim ipsa, porro ipsum est quas nam illum?
+                    <p class="card-text mx-1">
+                        More projects from Doychin Ivanov can be found on his Github page.
                     </p>
 
-                    <a href="#" class="btn btn-primary w-50 m-auto mb-4">Read More</a>
+                    <p class="card-text mx-1 my-2">
+                        Feel free to check them out!
+                    </p>
+
+                    <a target="_blank" href="https://github.com/doychinivanov"
+                        class="btn btn-outline-primary btn-block w-50 m-auto mb-4 mt-2">Github Page <i
+                            class="bi bi-github"></i></a>
                 </div>
             </div>
             <div class="col-md">
@@ -49,33 +83,20 @@
                     </div>
 
                     <h3 class="card-title mb-3">
-                        Title 2
+                        Contacts
                     </h3>
 
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, nulla consequatur explicabo
-                        accusamus eius officia iste enim ipsa, porro ipsum est quas nam illum?
+                    <p class="card-text mx-1">
+                        In case you have any questions, you want to report a bug, or you just want to say hi
                     </p>
 
-                    <a href="#" class="btn btn-primary btn-block w-50 m-auto mb-4">Read More</a>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="card bg-light text-dark">
-                    <div class="h1 mb-3">
-                        <i class="bi bi-people"></i>
-                    </div>
-
-                    <h3 class="card-title mb-3">
-                        Title 3
-                    </h3>
-
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, nulla consequatur explicabo
-                        accusamus eius officia iste enim ipsa, porro ipsum est quas nam illum?
+                    <p class="card-text mx-1 my-2">
+                        Feel free to do it at doychinivn@gmail.com
                     </p>
 
-                    <a href="#" class="btn btn-primary btn-block w-50 m-auto mb-4">Read More</a>
+                    <a href="mailto:doychinivn@gmail.com"
+                        class="btn btn-outline-primary btn-block w-50 m-auto mb-4 mt-2">Send an email <i
+                            class="bi bi-envelope-fill"></i></a>
                 </div>
             </div>
         </div>
