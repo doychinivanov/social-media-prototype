@@ -3,12 +3,25 @@
         <div class="row">
             <div class="col-6 col-md-5 d-none d-md-block">
                 <div>
-                    <img class="prof-picture img-fluid rounded-circle d-none d-md-block" src="/static/img/anonymous-user.png">
+                    <img class="prof-picture img-fluid rounded-circle d-none d-md-block"
+                        src="/static/img/anonymous-user.png">
                     <p class="text-center my-2">@{{userData.username}}</p>
+
+                    {{#if isCurrentUserProfile}}
+
+                    {{else}}
+                    <div class="text-center my-2">
+                        {{#if userData.isAlreadyFollowed}}
+                        <a href="/user/unfollow/{{userData._id}}" type="button" class="btn btn-light">Unfollow</a>
+                        {{else}}
+                        <a href="/user/follow/{{userData._id}}" type="button" class="btn btn-light">Follow</a>
+                        {{/if}}
+                    </div>
+                    {{/if}}
                 </div>
 
                 <div class="user-details">
-                    <p>Birthday: {{userData.birthday}}</p>
+                    <p>Born: {{userData.birthday}}</p>
                     <p>Email: {{userData.email}}</p>
                     <p><a href="">Followers: {{userData.followers.length}}</a></p>
                     <p><a href="">Following: {{userData.following.length}}</a></p>
@@ -19,7 +32,8 @@
                 {{#if isCurrentUserProfile}}
                 <form action="/post/create" method="POST">
                     <div class="form-group m-auto post-from">
-                        <textarea placeholder="Share your thoughts with the world..." id="post-body" name="postBody" class="form-control mt-3" rows="3"></textarea>
+                        <textarea placeholder="Share your thoughts with the world..." id="post-body" name="postBody"
+                            class="form-control mt-3" rows="3"></textarea>
 
                         <div class="d-flex align-items-end flex-column bd-highlight mb-3">
                             <input type="submit" class="btn btn-outline-primary mt-1 px-4" value="Post"></input>
@@ -35,7 +49,8 @@
                     {{> post}}
                     {{/each}}
                     {{else}}
-                    <p class="text-center m-auto my-4"> {{#if isCurrentUserProfile}} You have {{else}} {{userData.username}} has {{/if}} nothing to show yet.</p>
+                    <p class="text-center m-auto my-4"> {{#if isCurrentUserProfile}} You have {{else}}
+                        {{userData.username}} has {{/if}} nothing to show yet.</p>
                     {{/if}}
                 </div>
             </div>

@@ -54,9 +54,9 @@ router.get('/profile/:id', async (req, res)=>{
     ctx.isCurrentUserProfile = req.params.id == req.user._id;
 
     try{
+        const currentUserData = await getUserById(req.user._id);
         const posts = await req.storage.getPostsByAuthorId(req.params.id);
         const dataForUserProfile = await getUserById(req.params.id);
-        console.log(dataForUserProfile)
 
         ctx.posts = posts.map(post => ({
             currentUserIsAuthor: req.user._id == post.author._id,
@@ -76,10 +76,11 @@ router.get('/profile/:id', async (req, res)=>{
             followers: dataForUserProfile.followers,
             username: dataForUserProfile.username,
             email: dataForUserProfile.email,
-            following: dataForUserProfile.following.map(x => x._id) || []
+            following: dataForUserProfile.following.map(x => x._id) || [],
+            isAlreadyFollowed: currentUserData.following.map(x => x._id).includes(dataForUserProfile._id)
         }
 
-        console.log(ctx.userData);
+        console.log(ctx.userData.isAlreadyFollowed)
 
         if(err != true){
             ctx.errors = err.errors;
