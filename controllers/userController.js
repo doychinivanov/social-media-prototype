@@ -4,6 +4,7 @@ const {getAllUsersContainingUsername, getUserById} = require('../services/userSe
 const {isUser} = require('../middlewares/guards');
 const {errorParser} = require('../utils/errorParser');
 const {parseErrorFromCookie} = require('../utils/parseErrFromCookie');
+const {parseDate} = require('../utils/parseDate');
 
 router.get('/feed', isUser(), async (req, res)=>{
     const ctx = {};
@@ -43,6 +44,56 @@ router.get('/feed', isUser(), async (req, res)=>{
     }
 
     res.render('authViews/userHome', ctx);
+});
+
+router.get('/profile/:id', async (req, res)=>{
+    const ctx = {};
+    ctx.errors = [];
+    const err = parseErrorFromCookie(req);
+
+    ctx.isCurrentUserProfile = req.params.id == req.user._id;
+
+    try{
+        const posts = await req.storage.getPostsByAuthorId(req.params.id);
+        const dataForUserProfile = await getUserById(req.params.id);
+        console.log(dataForUserProfile)
+
+        ctx.posts = posts.map(post => ({
+            currentUserIsAuthor: req.user._id == post.author._id,
+            postIsLikedByCurrentUser: post.likes.includes(req.user._id),
+            author: {username:post.author.username, _id: post.author._id},
+            _id: post._id,
+            content: post.content,
+            likes: post.likes,
+            likesAreOne: post.likes.length == 1,
+            createdAt: post.createdAt.toLocaleString()
+        }));
+
+        ctx.userData = {
+            _id: dataForUserProfile._id,
+            private: dataForUserProfile.private,
+            birthday: parseDate(dataForUserProfile.birthday.toString()),
+            followers: dataForUserProfile.followers,
+            username: dataForUserProfile.username,
+            email: dataForUserProfile.email,
+            following: dataForUserProfile.following.map(x => x._id) || []
+        }
+
+        console.log(ctx.userData);
+
+        if(err != true){
+            ctx.errors = err.errors;
+            throw new Error('');
+        }
+    }catch(error){
+        if(ctx.errors.length == 0){
+            ctx.errors.push('Something went wrong. Please try again later!');
+        }
+
+        res.clearCookie(COOKIE_ERROR);
+    }
+
+    res.render('authViews/userProfile', ctx)
 });
 
 router.get('/search', isUser(), async (req,res)=>{

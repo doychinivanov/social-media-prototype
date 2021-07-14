@@ -1,8 +1,9 @@
 @import '/static/css/modalError.css';
-@import '/static/css/profilePicture.css';
 @import '/static//css/forms.css';
 @import '/static/css/navbar.css';
 @import '/static/css/userFeed.css';
+@import '/static/css/profile.css';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
 
 .centered-div{
     margin: auto;
@@ -10,4 +11,8 @@
 
 #worldwide{
     width: 38%;
+}
+
+p, h1, h2, h3, h4, h5, h6{
+    font-family: 'Noto Sans JP', sans-serif;
 }

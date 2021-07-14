@@ -12,5 +12,5 @@ async function startApplication(){
     expressConfig(app);
     router(app);
 
-    app.listen(PORT, () => console.log(`Server listening ong port ${PORT}...`));
+    app.listen(PORT, () => console.log(`Server listening on port ${PORT}...`));
 }

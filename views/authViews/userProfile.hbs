@@ -1,0 +1,47 @@
+<section class="mt-5 mb-5 p-5 p-lg-0 pt-lg-5 text-center text-md-start">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-md-5 d-none d-md-block">
+                <div>
+                    <img class="prof-picture img-fluid rounded-circle d-none d-md-block" src="/static/img/anonymous-user.png">
+                    <p class="text-center my-2">@{{userData.username}}</p>
+                </div>
+
+                <div class="user-details">
+                    <p>Birthday: {{userData.birthday}}</p>
+                    <p>Email: {{userData.email}}</p>
+                    <p><a href="">Followers: {{userData.followers.length}}</a></p>
+                    <p><a href="">Following: {{userData.following.length}}</a></p>
+                </div>
+            </div>
+
+            <div class="col-md-7 border text-center">
+                {{#if isCurrentUserProfile}}
+                <form action="/post/create" method="POST">
+                    <div class="form-group m-auto post-from">
+                        <textarea placeholder="Share your thoughts with the world..." id="post-body" name="postBody" class="form-control mt-3" rows="3"></textarea>
+
+                        <div class="d-flex align-items-end flex-column bd-highlight mb-3">
+                            <input type="submit" class="btn btn-outline-primary mt-1 px-4" value="Post"></input>
+
+                        </div>
+                    </div>
+                </form>
+                {{/if}}
+
+                <div id="posts-holder" class="text-start">
+                    {{#if posts}}
+                    {{#each posts}}
+                    {{> post}}
+                    {{/each}}
+                    {{else}}
+                    <p class="text-center m-auto my-4"> {{#if isCurrentUserProfile}} You have {{else}} {{userData.username}} has {{/if}} nothing to show yet.</p>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="/static/js/comments.js"></script>
+<script src="/static/js/scrollPostition.js"></script>

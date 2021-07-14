@@ -17,6 +17,7 @@ module.exports = () => (req, res, next)=>{
             },
             logout(){
                 res.clearCookie(COOKIE_NAME);
+                res.clearCookie('CURRENT_USER_TOKEN');
             }
         };
 

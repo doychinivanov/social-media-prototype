@@ -11,7 +11,7 @@
                         {{#if following}}
                         {{#each following}}
                         <li class="list-group-item list-group-item-light"><a
-                                href="/user/prifle/{{_id}}">{{username}}</a></li>
+                                href="/user/profile/{{_id}}">{{username}}</a></li>
                         {{/each}}
                         {{else}}
                         <li class="list-group-item list-group-item-light">You havent't followed anyone yet</li>
@@ -30,8 +30,7 @@
                 <form action="/post/create" method="POST">
                     <div class="form-group m-auto post-from">
                         <textarea id="post-body" name="postBody" class="form-control mt-3" rows="3"
-                            placeholder="Share your toughts with the world...">
-                        </textarea>
+                            placeholder="Share your thoughts with the world..."></textarea>
 
                         <div class="d-flex align-items-end flex-column bd-highlight mb-3">
                             <input type="submit" class="btn btn-outline-primary mt-1 px-4" value="Post"></input>
@@ -77,4 +76,4 @@
 
 <script type="module" src="/static/js/comments.js"></script>
 <script src="/static/js/scrollPostition.js"></script>
-<script src="/static/js/focusTextArea.js"></script>
+{{!-- <script src="/static/js/focusTextArea.js"></script> --}}
