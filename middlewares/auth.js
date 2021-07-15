@@ -8,8 +8,10 @@ module.exports = () => (req, res, next)=>{
     if(parseToken(req, res)){
         req.auth = {
             async register(userData){
-                const token = await register(userData);
-                res.cookie(COOKIE_NAME, token);
+                const data = await register(userData);
+                // const token = await register(userData);
+                res.cookie(COOKIE_NAME, data.token);
+                return data._id
             },
             async login(email, password){
                 const token = await login(email, password);
@@ -42,7 +44,7 @@ async function register(userData){
     const hashedPassword = await bcrypt.hash(userData.password, 10);
     const user = await userService.createUser(userData.email, userData.username, hashedPassword, new Date(userData.birthday), isPrivate);
 
-    return generateToken(user);
+    return {token: generateToken(user), _id: user._id};
 
 }
 

@@ -1,6 +1,6 @@
 <section class="p-5 mt-5 p-lg-0 pt-lg-5 text-center text-md-start">
     <div class="container">
-        <form action="/auth/register" method="POST">
+        <form action="/auth/register" method="POST" enctype="multipart/form-data" >
             <div class="form-group centered-div land-page-form mb-3">
                 <label for="email">Email address:</label>
                 <input type="email" name="email" class="form-control mt-1" id="email" placeholder="Enter email" value="{{userData.email}}">
