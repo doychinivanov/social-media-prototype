@@ -25,9 +25,23 @@ async function getUserByUsername(username){
 };
 
 async function getUserById(id){
-    const user = await User.findById(id).populate('following');
+    const user = await User.findById(id).populate('following').populate('followers');
 
     return user;
+}
+
+async function getFollowersByUserId(id){
+    const data = await User.findById(id).select('followers').populate('followers');
+    const followers = data.followers.map(x => ({username: x.username, _id: x._id}));
+
+    return followers;
+}
+
+async function getFollowingByUserId(id){
+    const data = await User.findById(id).select('following').populate('following');
+    const following = data.following.map(x => ({username: x.username, _id: x._id}));
+
+    return following;
 }
 
 async function getAllUsersContainingUsername(username){
@@ -51,4 +65,6 @@ module.exports = {
     getUserById,
     getUserByEmail,
     getAllUsersContainingUsername,
+    getFollowersByUserId,
+    getFollowingByUserId
 }

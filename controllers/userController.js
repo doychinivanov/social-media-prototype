@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const {COOKIE_ERROR} = require('../config/index');
-const {getAllUsersContainingUsername, getUserById} = require('../services/userService');
+const {getAllUsersContainingUsername, getUserById, getFollowersByUserId, getFollowingByUserId} = require('../services/userService');
 const {isUser} = require('../middlewares/guards');
 const {errorParser} = require('../utils/errorParser');
-const {parseErrorFromCookie} = require('../utils/parseErrFromCookie');
+const {parseErrorFromCookie, generateToken} = require('../utils/parseErrFromCookie');
 const {parseDate} = require('../utils/parseDate');
 
 router.get('/feed', isUser(), async (req, res)=>{
@@ -46,7 +46,7 @@ router.get('/feed', isUser(), async (req, res)=>{
     res.render('authViews/userHome', ctx);
 });
 
-router.get('/profile/:id', async (req, res)=>{
+router.get('/profile/:id', isUser(), async (req, res)=>{
     const ctx = {};
     ctx.errors = [];
     const err = parseErrorFromCookie(req);
@@ -73,14 +73,12 @@ router.get('/profile/:id', async (req, res)=>{
             _id: dataForUserProfile._id,
             private: dataForUserProfile.private,
             birthday: parseDate(dataForUserProfile.birthday.toString()),
-            followers: dataForUserProfile.followers,
+            followers: dataForUserProfile.followers.map(x => x._id) || [],
             username: dataForUserProfile.username,
             email: dataForUserProfile.email,
             following: dataForUserProfile.following.map(x => x._id) || [],
             isAlreadyFollowed: currentUserData.following.map(x => x._id).includes(dataForUserProfile._id)
         }
-
-        console.log(ctx.userData.isAlreadyFollowed)
 
         if(err != true){
             ctx.errors = err.errors;
@@ -147,5 +145,36 @@ router.get('/unfollow/:id', isUser(), async (req,res)=>{
         res.render('authViews/userHome', ctx);
     }
 });
+
+
+router.get('/followers/:id', async(req,res)=>{
+    const id = req.params.id;
+
+    try{
+        const followers = await getFollowersByUserId(id);
+        res.status(200).json(followers);
+    } catch(err){
+        const errors = errorParser(err);
+        const token = generateToken(errors);
+
+        res.cookie(COOKIE_ERROR, token);
+        res.redirect('/user/profile/' + id);
+    }
+});
+
+router.get('/following/:id', async(req,res)=>{
+    const id = req.params.id;
+
+    try{
+        const following = await getFollowingByUserId(id);
+        res.status(200).json(following);
+    } catch(err){
+        const errors = errorParser(err);
+        const token = generateToken(errors);
+
+        res.cookie(COOKIE_ERROR, token);
+        res.redirect('/user/profile/' + id);
+    }
+})
 
 module.exports = router;

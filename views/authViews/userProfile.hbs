@@ -20,15 +20,15 @@
                     {{/if}}
                 </div>
 
-                <div class="user-details">
-                    <p>Born: {{userData.birthday}}</p>
-                    <p>Email: {{userData.email}}</p>
-                    <p><a href="">Followers: {{userData.followers.length}}</a></p>
-                    <p><a href="">Following: {{userData.following.length}}</a></p>
+                <div class="user-details bg-light rounded">
+                    <p class="px-4 pt-2">Born: {{userData.birthday}}</p>
+                    <p class="px-4">Email: {{userData.email}}</p>
+                    <p class="px-4"><a id="followers" data-id="{{userData._id}}" href="javascript:void(0)" class="text-dark">Followers: {{userData.followers.length}}</a></p>
+                    <p class="px-4 pb-2"><a id="following" data-id="{{userData._id}}" href="javascript:void(0)" class="text-dark">Following: {{userData.following.length}}</a></p>
                 </div>
             </div>
 
-            <div class="col-md-7 border text-center">
+            <div class="user-data col-md-7 border text-center">
                 {{#if isCurrentUserProfile}}
                 <form action="/post/create" method="POST">
                     <div class="form-group m-auto post-from">
@@ -59,4 +59,5 @@
 </section>
 
 <script type="module" src="/static/js/comments.js"></script>
+<script type="module" src="/static/js/userConnections.js"></script>
 <script src="/static/js/scrollPostition.js"></script>

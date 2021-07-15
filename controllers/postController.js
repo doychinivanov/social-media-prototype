@@ -10,7 +10,7 @@ router.post('/create', isUser(),
 body('postBody').trim().not().isEmpty().withMessage('You can\'t create an empty post.'),
 async (req, res) => {
     const { errors } = validationResult(req);
-
+    const backUrl = req.header('Referer') || '/';
     try {
         if (errors.length > 0) {
             throw new Error(Object.values(errors).map(e => e.msg).join('\n'));
@@ -25,10 +25,11 @@ async (req, res) => {
         res.cookie(COOKIE_ERROR, token);
     }
 
-    res.redirect('/user/feed')
+    res.redirect(backUrl);
 });
 
 router.get('/like/:id', isUser(), async (req, res) => {
+    const backUrl = req.header('Referer') || '/';
     try{
         await req.storage.likePost(req.params.id, req.user._id);
     } catch(err){
@@ -38,10 +39,11 @@ router.get('/like/:id', isUser(), async (req, res) => {
         res.cookie(COOKIE_ERROR, token);
     }
 
-    res.redirect('/user/feed');
+    res.redirect(backUrl);
 });
 
 router.get('/unlike/:id', isUser(), async(req,res)=>{
+    const backUrl = req.header('Referer') || '/';
     try{
         await req.storage.unlikePost(req.params.id, req.user._id);
     } catch(err){
@@ -51,10 +53,11 @@ router.get('/unlike/:id', isUser(), async(req,res)=>{
         res.cookie(COOKIE_ERROR, token);
     }
 
-    res.redirect('/user/feed');
+    res.redirect(backUrl);
 });
 
 router.get('/delete/:id', isOwner(), async (req,res) =>{
+    const backUrl = req.header('Referer') || '/';
     try{
         await req.storage.deletePost(req.params.id);
     } catch(err){
@@ -64,7 +67,7 @@ router.get('/delete/:id', isOwner(), async (req,res) =>{
         res.cookie(COOKIE_ERROR, token);
     }
 
-    res.redirect('/user/feed');
+    res.redirect(backUrl);
 });
 
 module.exports = router;
