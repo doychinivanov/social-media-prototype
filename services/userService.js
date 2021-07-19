@@ -1,6 +1,6 @@
 const User = require('../models/User');
 
-async function createUser(email, username, hashedPassword, birthday, isPrivate){
+async function createUser(email, username, hashedPassword, birthday, isPrivate, profilePicture){
     const user = new User({
         email,
         username,
@@ -9,7 +9,8 @@ async function createUser(email, username, hashedPassword, birthday, isPrivate){
         private: isPrivate,
         posts: [],
         following: [],
-        followers: []
+        followers: [],
+        profilePicture
     });
 
     await user.save();

@@ -8,7 +8,8 @@ const schema = new Schema({
     birthday: {type: Date, default: null},
     posts: [{type: Schema.Types.ObjectId, ref: 'Post', default: []}],
     following: [{type: Schema.Types.ObjectId, ref: 'User', default: []}],
-    followers: [{type: Schema.Types.ObjectId, ref: 'User', default: []}]
+    followers: [{type: Schema.Types.ObjectId, ref: 'User', default: []}],
+    profilePicture: {type: Boolean, default: false}
 });
 
 

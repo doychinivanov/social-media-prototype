@@ -5,6 +5,7 @@ const {isUser} = require('../middlewares/guards');
 const {errorParser} = require('../utils/errorParser');
 const {parseErrorFromCookie, generateToken} = require('../utils/parseErrFromCookie');
 const {parseDate} = require('../utils/parseDate');
+const {getFileFromS3} = require('../services/s3');
 
 router.get('/feed', isUser(), async (req, res)=>{
     const ctx = {};
@@ -175,6 +176,25 @@ router.get('/following/:id', async(req,res)=>{
         res.cookie(COOKIE_ERROR, token);
         res.redirect('/user/profile/' + id);
     }
-})
+});
+
+router.get('/images/:key', async (req,res)=>{
+    const key = req.params.key;
+
+    try{
+        const dataForCurrentUser = await getUserById(req.user._id);
+        const hasProfilePic = dataForCurrentUser.profilePicture;
+
+        if(hasProfilePic){
+            const readStream = getFileFromS3(key);
+            readStream.pipe(res);
+        } else {
+            const readStream = getFileFromS3();
+            readStream.pipe(res);
+        }
+    } catch(err){
+        console.log(err);
+    }
+});
 
 module.exports = router;
