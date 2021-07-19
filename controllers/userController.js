@@ -182,7 +182,7 @@ router.get('/images/:key', async (req,res)=>{
     const key = req.params.key;
 
     try{
-        const dataForCurrentUser = await getUserById(req.user._id);
+        const dataForCurrentUser = await getUserById(key);
         const hasProfilePic = dataForCurrentUser.profilePicture;
 
         if(hasProfilePic){

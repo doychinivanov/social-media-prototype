@@ -11,7 +11,7 @@ const commentsTemplate = (comment, currentUserId) => html`
 <div class="comment p-3 border border-2 rounded">
     <div class="d-flex align-items-center border-bottom">
         <a href="/user/profile/${comment.author.authorId}">
-            <img id="profile-picture" class="img-fluid img-thumbnail" src="/static/img/anonymous-user.png" alt="">
+            <img id="profile-picture" class="img-fluid img-thumbnail" src="/user/images/${comment.author.authorId}" alt="">
         </a>
         <a href="/user/profile/${comment.author.authorId}">
             <h6>${comment.author.username}</h6>
