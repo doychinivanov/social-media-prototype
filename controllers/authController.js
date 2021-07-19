@@ -40,6 +40,8 @@ body('rePass').custom((value, {req})=>{if(value != req.body.password){throw new 
             await fs.rename(`./uploads/${req.file.filename}`, `./uploads/${id}`);
     
             await uploadToS3(`./uploads/${id}`, id);
+
+            await fs.unlink(`./uploads/${id}`);
         }
 
         res.redirect('/user/feed');
