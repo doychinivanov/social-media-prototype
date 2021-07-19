@@ -10,8 +10,10 @@
                     <ul class="list-group">
                         {{#if following}}
                         {{#each following}}
-                        <li class="list-group-item list-group-item-light"><a
-                                href="/user/profile/{{_id}}">{{username}}</a></li>
+                        <li class="list-group-item list-group-item-light">
+                            <img id="profile-picture" src="/user/images/{{_id}}">
+                            <a href="/user/profile/{{_id}}">{{username}}</a>
+                        </li>
                         {{/each}}
                         {{else}}
                         <li class="list-group-item list-group-item-light">You havent't followed anyone yet</li>

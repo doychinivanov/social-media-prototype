@@ -20,7 +20,7 @@ const followTemplate = (follower) => html`
 <div class="mt-2 p-3 border border-2 rounded">
     <div class="d-flex align-items-center">
         <a href="/user/profile/${follower._id}">
-            <img id="profile-picture" class="img-fluid img-thumbnail" src="/static/img/anonymous-user.png" alt="">
+            <img id="profile-picture" class="img-fluid img-thumbnail" src="/user/images/${follower._id}" alt="">
         </a>
         <a class="ms-1" href="/user/profile/${follower._id}">
             <h6>${follower.username}</h6>

@@ -46,7 +46,6 @@ module.exports = () => (req, res, next) => {
                 throw new Error('Please try again later. Something went wrong. :(');
             }
 
-            console.log(userToBeUnFollowed.followers.map(x => x._id))
 
             if(!userToBeUnFollowed.followers.map(x => x._id).includes(req.user._id)){
                 throw new Error('You can\'t unfollow a user you have not followed yet.');
