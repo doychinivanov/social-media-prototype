@@ -5,6 +5,7 @@ const schema = new Schema({
     hashedPassword: {type: String, required: [true, 'Password is required in order your room to be secure!']},
     participants: [{type: Schema.Types.ObjectId, ref: 'User', default: []}],
     creator: {type: Schema.Types.ObjectId, ref: 'User'},
+    messages: [{type: Schema.Types.ObjectId, ref: 'Message', default: []}]
 });
 
 module.exports = model('Room', schema);
