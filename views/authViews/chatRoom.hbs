@@ -1,0 +1,36 @@
+<section class="p-5 mt-5 p-lg-0 pt-lg-5 text-center text-md-start">
+    <div class="container">
+
+        <div class="chat-container">
+            <header class="chat-header">
+                <h1><i class="bi bi-gear-wide-connected"></i> ChatCord</h1>
+                <a id="leave-btn" class="btn"> <i class="bi bi-door-open"></i>Leave Room</a>
+            </header>
+            <main class="chat-main">
+                <div class="chat-sidebar">
+                    <h3><i class="bi bi-chat-square-dots"></i> Room Name:</h3>
+                    <h2 id="room-name">{{roomName}}</h2>
+                    <h3><i class="bi bi-people"></i> Users</h3>
+                    <ul id="users">
+                        {{#each participants}}
+                            <li><a href="/user/profile/{{this.userId}}">{{this.username}}</a></li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="chat-messages">
+                    <div class="message">
+                        <p class="meta">ime i chas</p>
+                        <p class="text">message text</p>
+                    </div>
+                </div>
+            </main>
+            <div class="chat-form-container">
+                <form id="chat-form">
+                    <input id="msg" type="text" placeholder="Enter Message" required autocomplete="off" />
+                    <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>

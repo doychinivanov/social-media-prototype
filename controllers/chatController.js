@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const {body, validationResult} = require('express-validator');
-const {isUser, isGuest} = require('../middlewares/guards');
-const {createRoom, getRoomByName} = require('../services/roomService');
+const {isUser} = require('../middlewares/guards');
+const {createRoom, getRoomByName, getRoomById} = require('../services/roomService');
 const {errorParser} = require('../utils/errorParser');
 
 router.get('/', isUser(), (req,res)=>{
@@ -61,7 +61,7 @@ router.post('/joinRoom', isUser(), async (req,res)=>{
         await room.participants.push(req.user._id);
         await room.save();
 
-        //Redirect to room page
+        res.redirect('/chat/room/' + room._id);
     }catch(err){
         const ctx = {
             errors: errorParser(err),
@@ -69,6 +69,28 @@ router.post('/joinRoom', isUser(), async (req,res)=>{
 
         res.render('authViews/chat', ctx);
     }
+});
+
+router.get('/room/:id', async (req,res)=>{
+    const ctx = {};
+
+    try{
+        const room = await getRoomById(req.params.id);
+        
+        if(room.participants.map(x => x._id).includes(req.user._id) == false){
+            throw new Error('You have no access to this room!');
+        }
+
+        ctx.participants = room.participants.map(x => ({userId: x._id, username: x.username,}));
+        ctx.roomName = room.roomName;
+
+        res.render('authViews/chatRoom', ctx);
+    } catch(err){
+        ctx.errors = errorParser(err);
+
+        res.render('authViews/chat', ctx);
+    }
+
 });
 
 module.exports = router;
