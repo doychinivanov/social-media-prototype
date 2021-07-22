@@ -6,6 +6,7 @@ const {errorParser} = require('../utils/errorParser');
 const {parseErrorFromCookie, generateToken} = require('../utils/parseErrFromCookie');
 const {parseDate} = require('../utils/parseDate');
 const {getFileFromS3} = require('../services/s3');
+const {getRoomByParticipantsId} = require('../services/roomService');
 
 router.get('/feed', isUser(), async (req, res)=>{
     const ctx = {};
@@ -19,6 +20,8 @@ router.get('/feed', isUser(), async (req, res)=>{
 
         const posts = await req.storage.getPostsByFollowingId(userFollowing);
 
+        const userRooms = await getRoomByParticipantsId(req.user._id);
+
         ctx.posts = posts.map(post => ({
             currentUserIsAuthor: req.user._id == post.author._id,
             postIsLikedByCurrentUser: post.likes.includes(req.user._id),
@@ -31,6 +34,8 @@ router.get('/feed', isUser(), async (req, res)=>{
         }));
 
         ctx.following = dataForCurrentUser.following.map(person => ({username: person.username, _id: person._id}))
+
+        ctx.rooms = userRooms.map(x=> ({roomName: x.roomName, roomId: x._id}));
 
         if(err != true){
             ctx.errors = err.errors;

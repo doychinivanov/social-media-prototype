@@ -60,14 +60,13 @@
 
                 <div class="list-group">
                     {{!-- Add aria-current="true"on the frontend to show current anchor --}}
-                    <a href="#" class="list-group-item list-group-item-action active">
-                        js app
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">family <span
-                            class="badge bg-primary rounded-pill">14</span></a>
-                    <a href="#" class="list-group-item list-group-item-action">work</a>
-                    <a href="#" class="list-group-item list-group-item-action">friends <span
-                            class="badge bg-primary rounded-pill">3</span></a>
+                    {{#if rooms}}
+                    {{#each rooms}}
+                   <a href="/chat/room/{{this.roomId}}" class="list-group-item list-group-item-action">{{this.roomName}} <span class="badge bg-primary rounded-pill">14</span></a>
+                    {{/each}}
+                    {{else}}
+                    <a href="#" class="list-group-item list-group-item-action active">No rooms yet...</a>
+                    {{/if}}
                 </div>
             </div>
 
@@ -78,4 +77,5 @@
 
 <script type="module" src="/static/js/comments.js"></script>
 <script src="/static/js/scrollPostition.js"></script>
-{{!-- <script src="/static/js/focusTextArea.js"></script> --}}
+{{!--
+<script src="/static/js/focusTextArea.js"></script> --}}

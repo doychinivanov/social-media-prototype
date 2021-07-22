@@ -27,5 +27,11 @@ async function getRoomById(id){
     return room;
 }
 
+async function getRoomByParticipantsId(userId){
+    const room = await Room.find({'participants': userId});
 
-module.exports = {createRoom, getRoomByName, getRoomById};
+    return room;
+}
+
+
+module.exports = {createRoom, getRoomByName, getRoomById, getRoomByParticipantsId};

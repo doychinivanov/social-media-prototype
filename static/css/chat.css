@@ -27,7 +27,6 @@ ul {
 
 a {
 	text-decoration: none;
-	color: #e6e9ff;
 }
 
 .btn {
@@ -84,6 +83,10 @@ a {
 
 .chat-sidebar ul li {
 	padding: 10px 0;
+}
+
+.chat-sidebar ul li a{
+	color: #e6e9ff;
 }
 
 .chat-messages {
