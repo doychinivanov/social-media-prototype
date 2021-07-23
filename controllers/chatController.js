@@ -71,7 +71,7 @@ router.post('/joinRoom', isUser(), async (req,res)=>{
     }
 });
 
-router.get('/room/:id', async (req,res)=>{
+router.get('/room/:id', isUser(), async (req,res)=>{
     const ctx = {};
 
     try{
