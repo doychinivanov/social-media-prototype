@@ -16,7 +16,3 @@ function removeActiveClass(){
     const anchors = [...document.querySelectorAll('.card-header-tabs a')];
     anchors.forEach(a => a.classList.remove('active'));
 }
-
-const socket = io();
-
-socket.on('message', message => console.log(message));

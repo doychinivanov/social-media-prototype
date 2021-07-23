@@ -55,7 +55,6 @@ async function loadComments(ev){
     const comments = await getCommentsByPostId(article.id);
     const currentUserId = document.cookie.split('CURRENT_USER_TOKEN=')[1];
 
-    console.log(document.cookie);
 
     render(commentsSlide(currentUserId, comments), commentsHolder);
 };

@@ -20,6 +20,7 @@ module.exports = () => (req, res, next)=>{
             logout(){
                 res.clearCookie(COOKIE_NAME);
                 res.clearCookie('CURRENT_USER_TOKEN');
+                res.clearCookie('CURRENT_USER_NAME');
             }
         };
 
@@ -75,7 +76,8 @@ function parseToken(req, res){
             const userData = jwt.verify(token, TOKEN_SECRET);
             req.user = userData;
             res.locals.user = userData;
-            res.cookie('CURRENT_USER_TOKEN', userData._id)
+            res.cookie('CURRENT_USER_TOKEN', userData._id);
+            res.cookie('CURRENT_USER_NAME', userData.username);
         } catch(err){
             res.clearCookie(COOKIE_NAME);
             res.redirect('/auth/login');
