@@ -7,14 +7,14 @@ module.exports = (server) => {
         socket.on('joinRoom', ({currentUser, roomName}) => {
             socket.join(roomName);
 
-            socket.broadcast.to(roomName).emit('message', {username: 'ChatBot', text: `${currentUser} has joined the chat.`, time: 'Now'});
+            socket.broadcast.to(roomName).emit('message', {username: 'ChatBot', text: `${currentUser} has joined the chat.`, time: new Date().toLocaleTimeString()});
         
             socket.on('chatMessage', msg=>{
-                io.to(roomName).emit('message', {username: currentUser, text: msg, time: 'Now'});
+                io.to(roomName).emit('message', {username: currentUser, text: msg, time: new Date().toLocaleTimeString()});
             });
 
             socket.on('disconnect', ()=>{
-                io.emit('message', {username: 'ChatBot', text: `${currentUser} has left the chat.`, time: 'Now'})
+                io.emit('message', {username: 'ChatBot', text: `${currentUser} has left the chat.`, time: new Date().toLocaleTimeString()})
             });
         });
     });

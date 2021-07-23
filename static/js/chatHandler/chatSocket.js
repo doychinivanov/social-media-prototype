@@ -48,4 +48,4 @@ function createChatMessage(message) {
     para.innerText = message.text;
     div.appendChild(para);
     document.querySelector('.chat-messages').appendChild(div);
-  }
+}
