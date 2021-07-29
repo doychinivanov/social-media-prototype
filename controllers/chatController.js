@@ -83,6 +83,7 @@ router.get('/room/:id', isUser(), async (req,res)=>{
 
         ctx.participants = room.participants.map(x => ({userId: x._id, username: x.username,}));
         ctx.roomName = room.roomName;
+        ctx.roomId = room._id;
         ctx.messages = room.messages.map(m => ({text: m.text, author: m.author.username, createdAt: m.createdAt}));
 
         res.render('authViews/chatRoom', ctx);
@@ -92,6 +93,30 @@ router.get('/room/:id', isUser(), async (req,res)=>{
         res.render('authViews/chat', ctx);
     }
 
+});
+
+router.get('/leave/:id', isUser(), async(req,res)=>{
+    const roomId = req.params.id;
+    const ctx = {};
+
+
+    try{
+        const room = await getRoomById(req.params.id);
+        
+        if(room.participants.map(x => x._id).includes(req.user._id) == false){
+            throw new Error('You can\'t leave a room you are not part of.')
+        }
+
+        const currentParticipant = room.participants.find(x => x._id == req.user._id);
+        room.participants.splice(room.participants.indexOf(currentParticipant), 1);
+        await room.save();
+
+        res.redirect('/');
+    } catch(err){
+        ctx.errors = errorParser(err);
+
+        res.render('authViews/chat', ctx);
+    }
 });
 
 module.exports = router;
