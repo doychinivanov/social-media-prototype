@@ -22,7 +22,10 @@ async function getRoomByName(roomName){
 }
 
 async function getRoomById(id){
-    const room = await Room.findById(id).populate('participants');
+    const room = await Room.findById(id)
+    .populate('participants')
+    .populate('messages')
+    .populate({path: 'messages', populate: {path: 'author', model: 'User'}});
 
     return room;
 }

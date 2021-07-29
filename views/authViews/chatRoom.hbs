@@ -13,15 +13,24 @@
                     <h3><i class="bi bi-people"></i> Users</h3>
                     <ul id="users">
                         {{#each participants}}
-                            <li><a href="/user/profile/{{this.userId}}">{{this.username}}</a></li>
+                        <li><a href="/user/profile/{{this.userId}}">{{this.username}}</a></li>
                         {{/each}}
                     </ul>
                 </div>
                 <div class="chat-messages">
-                    {{!-- <div class="message">
-                        <p class="meta">ime i chas</p>
-                        <p class="text">message text</p>
-                    </div> --}}
+                    {{#if messages}}
+                        {{#each messages}}
+                            <div class="message">
+                                <p class="meta">{{this.author}} <span>{{this.createdAt}}</span></p>
+                                <p class="text">{{this.text}}</p>
+                            </div>
+                        {{/each}}
+                    {{else}}
+                        <div class="message">
+                            <p class="meta">ChatBot</p>
+                            <p class="text">No messages yet...</p>
+                        </div>
+                    {{/if}}
                 </div>
             </main>
             <div class="chat-form-container">

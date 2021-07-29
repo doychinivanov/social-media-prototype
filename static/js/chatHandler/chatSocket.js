@@ -29,10 +29,11 @@ document.getElementById('chat-form').addEventListener('submit', (e) => {
 
 
 function getNeededData(){
-    const currentUser = document.cookie.split('CURRENT_USER_NAME=')[1];
+    const currentUsername = document.cookie.split('CURRENT_USER_NAME=')[1];
+    const currentUserId = document.cookie.split('CURRENT_USER_TOKEN=')[1].split(';')[0];
     const roomName = document.getElementById('room-name').textContent;
 
-    return {currentUser, roomName};
+    return {currentUsername, currentUserId, roomName};
 }
 
 function createChatMessage(message) {

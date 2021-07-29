@@ -76,13 +76,14 @@ router.get('/room/:id', isUser(), async (req,res)=>{
 
     try{
         const room = await getRoomById(req.params.id);
-        
+
         if(room.participants.map(x => x._id).includes(req.user._id) == false){
             throw new Error('You have no access to this room!');
         }
 
         ctx.participants = room.participants.map(x => ({userId: x._id, username: x.username,}));
         ctx.roomName = room.roomName;
+        ctx.messages = room.messages.map(m => ({text: m.text, author: m.author.username, createdAt: m.createdAt}));
 
         res.render('authViews/chatRoom', ctx);
     } catch(err){
