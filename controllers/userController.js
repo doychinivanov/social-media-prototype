@@ -64,6 +64,12 @@ router.get('/profile/:id', isUser(), async (req, res)=>{
         const posts = await req.storage.getPostsByAuthorId(req.params.id);
         const dataForUserProfile = await getUserById(req.params.id);
 
+        if(dataForUserProfile.private == false || ctx.isCurrentUserProfile || dataForUserProfile.followers.map(x =>x._id).includes(req.user._id)){
+            ctx.isOpen = true;
+        } else {
+            ctx,isOpen = false;
+        }
+
         ctx.posts = posts.map(post => ({
             currentUserIsAuthor: req.user._id == post.author._id,
             postIsLikedByCurrentUser: post.likes.includes(req.user._id),
