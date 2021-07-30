@@ -1,10 +1,11 @@
 const express = require('express');
 const http = require('http');
-const {PORT} = require('./config/index');
+// const {PORT} = require('./config/index');
 const database = require('./config/databaseConfig');
 const expressConfig = require('./config/expressConfig');
 const socketConfig = require('./config/socketConfig');
 const router = require('./config/routes');
+// const PORT = process.env.PORT
 
 startApplication();
 
@@ -16,5 +17,5 @@ async function startApplication(){
     router(app);
     socketConfig(server);
 
-    server.listen(PORT, () => console.log(`Server listening on port ${PORT}...`));
+    server.listen(process.env.PORT || 3000, () => console.log(`Server listening on port ${PORT}...`));
 }
