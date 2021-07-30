@@ -1,11 +1,10 @@
 const express = require('express');
 const http = require('http');
-// const {PORT} = require('./config/index');
 const database = require('./config/databaseConfig');
 const expressConfig = require('./config/expressConfig');
 const socketConfig = require('./config/socketConfig');
 const router = require('./config/routes');
-// const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000
 
 startApplication();
 
@@ -16,7 +15,5 @@ async function startApplication(){
     expressConfig(app);
     router(app);
     socketConfig(server);
-    console.log(process.env.PORT)
-
-    server.listen(process.env.PORT || 3000);
+    server.listen(PORT);
 }
