@@ -62,7 +62,7 @@
                     {{!-- Add aria-current="true"on the frontend to show current anchor --}}
                     {{#if rooms}}
                     {{#each rooms}}
-                   <a href="/chat/room/{{this.roomId}}" class="list-group-item list-group-item-action">{{this.roomName}} <span class="badge bg-primary rounded-pill">14</span></a>
+                   <a href="/chat/room/{{this.roomId}}" class="list-group-item list-group-item-action">{{this.roomName}}</a>
                     {{/each}}
                     {{else}}
                     <a href="#" class="list-group-item list-group-item-action active">No rooms yet...</a>
