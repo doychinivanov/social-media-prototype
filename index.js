@@ -16,6 +16,7 @@ async function startApplication(){
     expressConfig(app);
     router(app);
     socketConfig(server);
+    console.log(process.env.PORT)
 
-    server.listen(process.env.PORT || 3000, () => console.log(`Server listening on port ${PORT}...`));
+    server.listen(process.env.PORT || 3000);
 }
