@@ -11,7 +11,7 @@ startApplication();
 async function startApplication(){
     const app = express();
     const server = http.createServer(app);
-    await database(app);
+    // await database(app);
     expressConfig(app);
     router(app);
     socketConfig(server);
