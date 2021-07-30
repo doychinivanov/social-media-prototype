@@ -6,7 +6,7 @@ const {createRoom, getRoomByName, getRoomById} = require('../services/roomServic
 const {errorParser} = require('../utils/errorParser');
 
 router.get('/', isUser(), (req,res)=>{
-    res.render('authViews/chat')
+    res.render('authViews/chat', {title: 'Toggle - Chat'})
 });
 
 router.post('/createRoom', isUser(),
@@ -85,6 +85,7 @@ router.get('/room/:id', isUser(), async (req,res)=>{
         ctx.roomName = room.roomName;
         ctx.roomId = room._id;
         ctx.messages = room.messages.map(m => ({text: m.text, author: m.author.username, createdAt: m.createdAt}));
+        ctx.title = `${room.roomName} | ToggleCord`;
 
         res.render('authViews/chatRoom', ctx);
     } catch(err){

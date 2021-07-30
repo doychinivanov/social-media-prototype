@@ -36,6 +36,7 @@ router.get('/feed', isUser(), async (req, res)=>{
         ctx.following = dataForCurrentUser.following.map(person => ({username: person.username, _id: person._id}))
 
         ctx.rooms = userRooms.map(x=> ({roomName: x.roomName, roomId: x._id}));
+        ctx.title = 'Toggle';
 
         if(err != true){
             ctx.errors = err.errors;
@@ -92,6 +93,8 @@ router.get('/profile/:id', isUser(), async (req, res)=>{
             isAlreadyFollowed: currentUserData.following.map(x => x._id).includes(dataForUserProfile._id)
         }
 
+        ctx.title = `${dataForUserProfile.username} | Toggle`;
+
         if(err != true){
             ctx.errors = err.errors;
             throw new Error('');
@@ -118,7 +121,7 @@ router.get('/search', isUser(), async (req,res)=>{
             isAlreadyFollowed: currentUserData.following.map(x => x._id).includes(person._id)
         }));
 
-        res.render('authViews/userSearch', {people});
+        res.render('authViews/userSearch', {people, title:'Toggle - Search'});
     } catch(err){
         const ctx = {
             errors: errorParser(err),

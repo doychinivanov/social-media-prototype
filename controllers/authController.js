@@ -8,7 +8,7 @@ const {errorParser} = require('../utils/errorParser');
 const {uploadToS3} = require('../services/s3');
 
 router.get('/register', isGuest(), (req, res)=>{
-    res.render('authViews/register');
+    res.render('authViews/register', {title: 'Toggle - Register'});
 });
 
 router.post('/register', isGuest(), upload.single('profilePicture'),
@@ -57,7 +57,7 @@ body('rePass').custom((value, {req})=>{if(value != req.body.password){throw new 
 });
 
 router.get('/login', isGuest(), (req, res)=>{
-    res.render('authViews/login');
+    res.render('authViews/login', {title: 'Toggle - Login'});
 });
 
 router.post('/login', isGuest(),
