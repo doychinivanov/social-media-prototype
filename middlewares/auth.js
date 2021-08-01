@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const userService = require('../services/userService');
-const {COOKIE_NAME, TOKEN_SECRET} = require('../config/index');
+// const {COOKIE_NAME, TOKEN_SECRET} = require('../config/index');
 
 
 module.exports = () => (req, res, next)=>{
@@ -10,15 +10,15 @@ module.exports = () => (req, res, next)=>{
             async register(userData){
                 const data = await register(userData);
                 // const token = await register(userData);
-                res.cookie(COOKIE_NAME, data.token);
+                res.cookie(process.env.COOKIE_NAME, data.token);
                 return data._id
             },
             async login(email, password){
                 const token = await login(email, password);
-                res.cookie(COOKIE_NAME, token);
+                res.cookie(process.env.COOKIE_NAME, token);
             },
             logout(){
-                res.clearCookie(COOKIE_NAME);
+                res.clearCookie(process.env.COOKIE_NAME);
                 res.clearCookie('CURRENT_USER_TOKEN');
                 res.clearCookie('CURRENT_USER_NAME');
             }
@@ -65,21 +65,21 @@ function generateToken(userData){
         _id: userData._id,
         username: userData.username,
         email: userData.email,
-    }, TOKEN_SECRET)
+    }, process.env.TOKEN_SECRET)
 };
 
 function parseToken(req, res){
-    const token = req.cookies[COOKIE_NAME];
+    const token = req.cookies[process.env.COOKIE_NAME];
 
     if(token){
         try{
-            const userData = jwt.verify(token, TOKEN_SECRET);
+            const userData = jwt.verify(token, process.env.TOKEN_SECRET);
             req.user = userData;
             res.locals.user = userData;
             res.cookie('CURRENT_USER_TOKEN', userData._id);
             res.cookie('CURRENT_USER_NAME', userData.username);
         } catch(err){
-            res.clearCookie(COOKIE_NAME);
+            res.clearCookie(process.env.COOKIE_NAME);
             res.redirect('/auth/login');
             return false;
         }

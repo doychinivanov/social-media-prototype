@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {COOKIE_ERROR} = require('../config/index');
+// const {COOKIE_ERROR} = require('../config/index');
 const {getAllUsersContainingUsername, getUserById, getFollowersByUserId, getFollowingByUserId} = require('../services/userService');
 const {isUser} = require('../middlewares/guards');
 const {errorParser} = require('../utils/errorParser');
@@ -47,7 +47,7 @@ router.get('/feed', isUser(), async (req, res)=>{
             ctx.errors.push('Something went wrong. Please try again later!');
         }
 
-        res.clearCookie(COOKIE_ERROR);
+        res.clearCookie(process.env.COOKIE_ERROR);
     }
 
     res.render('authViews/userHome', ctx);
@@ -104,7 +104,7 @@ router.get('/profile/:id', isUser(), async (req, res)=>{
             ctx.errors.push('Something went wrong. Please try again later!');
         }
 
-        res.clearCookie(COOKIE_ERROR);
+        res.clearCookie(process.env.COOKIE_ERROR);
     }
 
     res.render('authViews/userProfile', ctx)
@@ -172,7 +172,7 @@ router.get('/followers/:id', async(req,res)=>{
         const errors = errorParser(err);
         const token = generateToken(errors);
 
-        res.cookie(COOKIE_ERROR, token);
+        res.cookie(process.env.COOKIE_ERROR, token);
         res.redirect('/user/profile/' + id);
     }
 });
@@ -187,7 +187,7 @@ router.get('/following/:id', async(req,res)=>{
         const errors = errorParser(err);
         const token = generateToken(errors);
 
-        res.cookie(COOKIE_ERROR, token);
+        res.cookie(process.env.COOKIE_ERROR, token);
         res.redirect('/user/profile/' + id);
     }
 });

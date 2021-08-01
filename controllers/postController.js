@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { body, validationResult } = require('express-validator');
-const {COOKIE_ERROR} = require('../config/index');
+// const {COOKIE_ERROR} = require('../config/index');
 const { isUser, isOwner } = require('../middlewares/guards');
 const {errorParser} = require('../utils/errorParser');
 const {generateToken} = require('../utils/parseErrFromCookie');
@@ -22,7 +22,7 @@ async (req, res) => {
         const token = generateToken(errors);
 
 
-        res.cookie(COOKIE_ERROR, token);
+        res.cookie(process.env.COOKIE_ERROR, token);
     }
 
     res.redirect(backUrl);
@@ -36,7 +36,7 @@ router.get('/like/:id', isUser(), async (req, res) => {
         const errors = errorParser(err);
         const token = generateToken(errors);
 
-        res.cookie(COOKIE_ERROR, token);
+        res.cookie(process.env.COOKIE_ERROR, token);
     }
 
     res.redirect(backUrl);
@@ -50,7 +50,7 @@ router.get('/unlike/:id', isUser(), async(req,res)=>{
         const errors = errorParser(err);
         const token = generateToken(errors);
 
-        res.cookie(COOKIE_ERROR, token);
+        res.cookie(process.env.COOKIE_ERROR, token);
     }
 
     res.redirect(backUrl);
@@ -64,7 +64,7 @@ router.get('/delete/:id', isOwner(), async (req,res) =>{
         const errors = errorParser(err);
         const token = generateToken(errors);
 
-        res.cookie(COOKIE_ERROR, token);
+        res.cookie(process.env.COOKIE_ERROR, token);
     }
 
     res.redirect(backUrl);

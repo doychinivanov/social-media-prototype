@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {errorParser} = require('../utils/errorParser');
-const {COOKIE_ERROR} = require('../config/index');
+// const {COOKIE_ERROR} = require('../config/index');
 const {generateToken} = require('../utils/parseErrFromCookie');
 const {isUser, isOwner, isCommentOwner} = require('../middlewares/guards');
 
@@ -12,7 +12,7 @@ router.get('/:id', async (req, res) => {
         const errors = errorParser(err);
         const token = generateToken(errors);
 
-        res.cookie(COOKIE_ERROR, token);
+        res.cookie(process.env.COOKIE_ERROR, token);
         res.redirect('/user/feed');
     }
 });
@@ -48,7 +48,7 @@ router.delete('/delete/:id', isCommentOwner(), async(req, res)=>{
         const errors = errorParser(err);
         const token = generateToken(errors);
 
-        res.cookie(COOKIE_ERROR, token);
+        res.cookie(process.env.COOKIE_ERROR, token);
         res.redirect('/user/feed');
     };
 })
