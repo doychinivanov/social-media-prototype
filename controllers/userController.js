@@ -1,5 +1,4 @@
 const router = require('express').Router();
-// const {COOKIE_ERROR} = require('../config/index');
 const {getAllUsersContainingUsername, getUserById, getFollowersByUserId, getFollowingByUserId} = require('../services/userService');
 const {isUser} = require('../middlewares/guards');
 const {errorParser} = require('../utils/errorParser');
