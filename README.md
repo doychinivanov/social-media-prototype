@@ -33,6 +33,7 @@ Toggle is a Hybrid Application. It combines both Multi-Page Application and REST
 * Private account - choosing a private account means that only users that follow you can see your activity on Toggle
 * Profile Picture - when registerin you can upload a picture for your profile. This is entirely optional. In a picture is not presented you are given a custom one.
 * Profle page - all recent activity of the user, their email, profile picture and list of people who follow them and who the user is following.
+* News Feed Page - accessible only for logged in users. In the news feed you can see all recent activity of the people you follow.
 
 
 ## Data Structure
