@@ -81,18 +81,26 @@ Toggle is a Hybrid Application. It combines both Multi-Page Application and REST
 }
 ```
 * rooms
-* messages
-
-* Solution
 ```javascript
 {
-    objectId: String
-    correct: Number,
-    tota: Number,
-    quiz: Pointer<Quiz>,
-    owner: Pointer<User>
+    _id: String
+    participants: Array,
+    messages: Array,
+    roomName: String,
+    hashedPassword: String,
+    creator: String
 }
 ```
+* messages
+```javascript
+{
+    _id: String
+    author: Array,
+    text: String,
+    createdAt: Date
+}
+```
+
 
 ## Access Control
 * Guests can register, browse the quizzes, see details about the quizzes and see users' profile pages
