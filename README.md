@@ -44,39 +44,45 @@ Toggle is a Hybrid Application. It combines both Multi-Page Application and REST
 
 ## Data Structure
 ### Collections
-* Sessions
-* Useres
+* users
 ```javascript
 {
-    objectId: String
+    _id: String
     email: String,
     username: String,
-    password: String,
+    hashedPassword: String,
+    profilePicture: Boolean,
+    followers: Array,
+    following: Array,
+    posts: Array,
+    birthday: Date
+    private: Boolean
 }
 ```
-* Quiz
+* posts
 ```javascript
 {
-    objectId: String
-    title: String,
-    topic: String,
-    questionCount: Number,
-    description: String,
-    time: Number,
-    owner: Pointer<User>
+    _id: String
+    likes: Array,
+    comments: Array,
+    author: String,
+    content: String,
+    createdAt: Date,
 }
 ```
-* Questions
+* comments
 ```javascript
 {
-    objectId: String
-    text: String,
-    answers: Array<String>,
-    correctIndex: Number,
-    quiz: Pointer<Quiz>,
-    owner: Pointer<User>
+    _id_: String
+    author: String,
+    content: String,
+    createdAt: Date,
+    postId: String
 }
 ```
+* rooms
+* messages
+
 * Solution
 ```javascript
 {
