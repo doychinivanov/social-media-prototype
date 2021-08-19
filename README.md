@@ -103,6 +103,7 @@ Toggle is a Hybrid Application. It combines both Multi-Page Application and REST
 
 
 ## Access Control
-* Guests can register, browse the quizzes, see details about the quizzes and see users' profile pages
-* Registered users can solve quizzes and see their results
-* Only quiz author can edit and delete the quiz
+* Guests can register, search for users, see users' profile pages in case they are not private
+* Registered users create posts, like posts, comment posts, follow other users, be followed, join in chat rooms
+* Private accounts can be seen only by users who follow them
+* Posts can be deleted only by their creator
