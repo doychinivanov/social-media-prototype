@@ -38,6 +38,8 @@ Toggle is a Hybrid Application. It combines both Multi-Page Application and REST
 * Profle page - all recent activity of the user, their email, profile picture and list of people who follow them and who the user is following.
 * News Feed Page - accessible only for logged in users. In the news feed you can see all recent activity of the people you follow.
 
+## Installation
+All dependencies are listed in the package.json file. To run the project you must install all of them. You also must have MongoDB installed locally. Change the connection string to your local database in *databaseConfig,js* file, located in *config* folder, and you will be all set. 
 
 ## Data Structure
 ### Collections
