@@ -3,7 +3,6 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/doychinivanov/social-media-prototype) ![GitHub language count](https://img.shields.io/github/languages/count/doychinivanov/social-media-prototype)
 
 # Toggle - Social Media Prototype
-<a href="https://toggle-social-media.herokuapp.com/" > Open Toggle </a>
 
 ## What is Toggle
 Toggle is a prototype for social media, where a user can register, add a profile picture, follow people and be followed, create posts, comment on other people's posts and like them. Furthermore 'Toggle' provides a real-time chat service, in which users can create chat rooms, protected by a password.
